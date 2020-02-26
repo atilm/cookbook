@@ -1,10 +1,10 @@
 #!flask/bin/python
 from flask import jsonify
 from backend import app
-from backend.ingredientService import IngredientService
+from backend.foodService import FoodService
 
-ingredients = IngredientService()
+foodService = FoodService()
 
-@app.route('/api/ingredients')
-def get_ingredients():
-    return jsonify(ingredients.get_all())
+@app.route('/api/food')
+def get_food():
+    return jsonify(foodService.get_all())
