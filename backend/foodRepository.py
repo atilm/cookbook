@@ -7,40 +7,55 @@ class FoodRepository:
     def __init__(self):
         self.foodStore = {}
         self.currentId = 0
-
-    def _nextId(self):
-        self.currentId += 1
-        return self.currentId
+        self._load()
 
     def Save(self, food):
         newId = self._nextId()
         self.foodStore[newId] = food
         food.id = newId
+        self._persist()
     
     def Update(self, food):
         if food.id == None:
             return
 
         self.foodStore[food.id] = food
+        self._persist()
 
     def GetAll(self):
         return self.foodStore.values()
 
     def GetById(self, id):
         if not(id in self.foodStore):
-            return Food("undefined food")
+            return Food(None, None)
 
         return self.foodStore[id]
 
     def Delete(self, id):
         if id in self.foodStore:
             del self.foodStore[id]
+            self._persist()
 
     def _persist(self):
-        filePath = "foodStore.json"
+        filePath = path.join(Config.DATABASE_FOLDER, "foodStore.json")
         with open(filePath, "w") as f:
             foodList = list(map(lambda i: i.to_dict(), self.GetAll()))
             json.dump(foodList, f)
+
+    def _load(self):
+        filePath = path.join(Config.DATABASE_FOLDER, "foodStore.json")
+
+        if (not(path.exists(filePath))):
+            return
+
+        with open(filePath, "r") as f:
+            jsonArray = json.load(f)
+            
+        self.foodStore = dict((js['id'], Food.fromJson(js)) for js in jsonArray)
+
+    def _nextId(self):
+        self.currentId += 1
+        return self.currentId
         
 
 
