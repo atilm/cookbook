@@ -11,4 +11,7 @@ class FoodService:
     def get_by_id(self, id):
         return self.repository.GetById(id).to_dict()
 
+    def create(self, jsonData):
+        return self.repository.Save(Food.fromJson(jsonData)).to_dict()
+
     

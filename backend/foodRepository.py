@@ -14,6 +14,7 @@ class FoodRepository:
         self.foodStore[newId] = food
         food.id = newId
         self._persist()
+        return food
     
     def Update(self, food):
         if food.id == None:
@@ -52,6 +53,7 @@ class FoodRepository:
             jsonArray = json.load(f)
             
         self.foodStore = dict((js['id'], Food.fromJson(js)) for js in jsonArray)
+        self.currentId = max(self.foodStore.keys())
 
     def _nextId(self):
         self.currentId += 1

@@ -1,10 +1,16 @@
 #!flask/bin/python
 from flask import jsonify
 from flask import abort
+from flask import make_response
+from flask import request
 from backend import app
 from backend.foodService import FoodService
 
 foodService = FoodService()
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 @app.route('/api/food')
 def get_all_food():
@@ -16,3 +22,12 @@ def get_food(food_id):
     if food['id'] is None:
         abort(404)
     return jsonify(food)
+
+@app.route('/api/food', methods=['POST'])
+def create_task():
+    if not request.json:
+        abort(400)
+
+    food = foodService.create(request.json)
+
+    return jsonify({'food': food}), 201
