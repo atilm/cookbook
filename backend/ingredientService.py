@@ -1,4 +1,4 @@
-from backend.ingredient import *
+from backend.ingredient import Ingredient
 
 class IngredientService:
     def __init__(self):

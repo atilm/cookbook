@@ -1,5 +1,7 @@
-class Ingredient:
+
+class Ingredient():
     def __init__(self, name, kcal):
+        self.id = None
         self.name = name
         self.kcal = kcal
 
