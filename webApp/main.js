@@ -1,4 +1,4 @@
-let url = 'http://localhost:5000/api/ingredients';
+let url = 'http://localhost:5000/api/food';
 
 console.log('Starting script.')
 
@@ -8,12 +8,12 @@ fetch(url).then(function(result) {
     console.log('Fetching data');
     return result.json();
 }).then(function(json){
-    displayIngredients(json);
+    displayFood(json);
 }).catch(function(e){
     console.log(`Fetch failed: ${ e }`);
 })
 
-function displayIngredients(json){
+function displayFood(json){
     for(let i = 0; i < json.length; i++){
         let ingredient = json[i];
 
