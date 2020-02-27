@@ -7,7 +7,29 @@
     <script src="main.js" defer></script>
   </head>
   <body>
-    <h1>List of ingredients</h1>
+    <h1>Food List</h1>
+    <div id="wrapper">
+      <div id="newFoodForm">
+          <form id="createFood">
+            <fieldset>
+              <legend>New food</legend>
+              <p>
+                <input type="text" id="foodName">
+                <label for="foodName">Name</label>
+              </p>
+              <p>
+                <input type="number" id="calories">
+                <label for="calories">kcal / 100 g</label>
+              </p>
+              <p>
+                <button type="submit" id="createFoodButton">Create</button>
+              </p>
+            </fieldset>
+          </form>
+      </div>
+      <div id="foodList">
 
+      </div>
+    </div>
   </body>
 </html>

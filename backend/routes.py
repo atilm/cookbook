@@ -30,4 +30,4 @@ def create_task():
 
     food = foodService.create(request.json)
 
-    return jsonify({'food': food}), 201
+    return jsonify(food), 201

@@ -5,3 +5,15 @@ body {
   h1 {
     text-align: center;
   }
+
+  #wrapper {
+    display: flex;
+  }
+  #newFoodForm {
+    width: 200px;
+    float:left;
+  }
+  #foodList {
+    flex: 1;
+    padding-left: 50px;
+  }
