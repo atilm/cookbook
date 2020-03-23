@@ -33,13 +33,12 @@
 </template>
 
 <script>
+import { FoodService } from "./common/api.service";
+
 export default {
   data() {
     return {
-      foodItems: [
-        { "name": "Apple", "kcal": 12},
-        { "name": "Pear", "kcal": 15}
-      ],
+      foodItems: FoodService.getAll(),
     };
   },
 };
