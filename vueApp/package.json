@@ -4,7 +4,9 @@
   "description": "a cookbook frontend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "webpack-dev-server --mode development",
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack --mode production"
   },
   "author": "",
   "license": "ISC",
