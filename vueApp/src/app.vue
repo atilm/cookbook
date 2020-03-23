@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
       <div class="container">
         <a class="navbar-brand" href="#">Food List</a>
@@ -22,10 +21,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h1 class="mt-5">List of food:</h1>
-          <ul class="list-unstyled">
-            <li v-for="(food, index) in foodItems" :key="food.name">{{index + 1}} {{food.name}} ({{food.kcal}} kcal)</li>
-          </ul>
+          <food-list />
         </div>
       </div>
     </div>
@@ -33,17 +29,7 @@
 </template>
 
 <script>
-import { FoodService } from "./common/api.service";
-
 export default {
-  data() {
-    return {
-      foodItems: []
-    };
-  },
-  mounted() {
-    FoodService.getAll().then(foodItems => this.foodItems = foodItems);
-  }
 };
 </script>
 
