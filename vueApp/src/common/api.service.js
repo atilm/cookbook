@@ -1,9 +1,9 @@
 export const FoodService = {
     getAll() {
-        return [
-            { "name": "Apple", "kcal": 12},
-            { "name": "Pear", "kcal": 15},
-            { "name": "Chocolate", "kcal": 150}
-          ];
+        return fetch("http://localhost:5000/api/food")
+            .then(result => result.json())
+            .catch(function(e){
+                console.log(`Fetch failed: ${ e }`);
+            });
     }
 };

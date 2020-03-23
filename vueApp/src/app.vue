@@ -24,7 +24,7 @@
         <div class="col-lg-12 text-center">
           <h1 class="mt-5">List of food:</h1>
           <ul class="list-unstyled">
-            <li v-for="(food, index) in foodItems" :key="food.name">{{index}} {{food.name}} ({{food.kcal}} kcal)</li>
+            <li v-for="(food, index) in foodItems" :key="food.name">{{index + 1}} {{food.name}} ({{food.kcal}} kcal)</li>
           </ul>
         </div>
       </div>
@@ -38,9 +38,12 @@ import { FoodService } from "./common/api.service";
 export default {
   data() {
     return {
-      foodItems: FoodService.getAll(),
+      foodItems: []
     };
   },
+  mounted() {
+    FoodService.getAll().then(foodItems => this.foodItems = foodItems);
+  }
 };
 </script>
 
