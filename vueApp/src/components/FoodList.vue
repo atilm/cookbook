@@ -18,7 +18,13 @@ export default {
         };
     },
     mounted() {
-        FoodService.getAll().then(foodItems => this.foodItems = foodItems);
+        this.updateList();
+    },
+    methods: {
+        updateList: function(){
+            let vm = this;
+            FoodService.getAll().then(items => this.foodItems = items);
+        }
     }
 };
 </script>
