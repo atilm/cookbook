@@ -4,12 +4,12 @@
         <fieldset>
             <legend>New food</legend>
             <p>
-            <input v-model="currentFood.name" ref="fooodnameref" id="foodName">
             <label for="foodName">Name</label>
+            <input v-model="currentFood.name" ref="fooodnameref" id="foodName">
             </p>
             <p>
-            <input v-model="currentFood.kcal" id="calories">
             <label for="calories">kcal / 100 g</label>
+            <input v-model="currentFood.kcal" id="calories">
             </p>
             <p>
             <button type="submit">Create</button>

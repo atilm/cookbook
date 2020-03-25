@@ -24,4 +24,13 @@ export default class FoodService {
             console.error('Error:', error);
         });
     }
+
+    deleteFood(id) {
+        return fetch(`${this.url}/${id}`, {
+            method: 'DELETE'
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
 };

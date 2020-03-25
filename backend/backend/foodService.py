@@ -14,4 +14,7 @@ class FoodService:
     def create(self, jsonData):
         return self.repository.Save(Food.fromJson(jsonData)).to_dict()
 
+    def delete(self, id):
+        self.repository.Delete(id)
+
     

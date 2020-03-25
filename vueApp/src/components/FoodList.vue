@@ -3,7 +3,8 @@
         <h1 class="mt-5">List of food:</h1>
         <button @click="updateList">Refresh</button>
         <ul class="list-unstyled">
-            <li v-for="(food, index) in foodItems" :key="food.name">{{index + 1}} {{food.name}} ({{food.kcal}} kcal)</li>
+            <li v-for="(food) in foodItems" :key="food.id">{{food.id}} {{food.name}} ({{food.kcal}} kcal)
+                <Button @click="deleteFood(food.id)">Delete</Button></li>
         </ul>
     </div>
 </template>
@@ -26,6 +27,10 @@ export default {
         updateList: function(){
             let vm = this;
             this.foodService.getAll().then(items => this.foodItems = items);
+        },
+        deleteFood: function(id){
+            let vm = this;
+            this.foodService.deleteFood(id).then(vm.updateList);
         }
     }
 };

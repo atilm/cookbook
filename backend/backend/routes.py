@@ -24,10 +24,16 @@ def get_food(food_id):
     return jsonify(food)
 
 @app.route('/api/food', methods=['POST'])
-def create_task():
+def create_food():
     if not request.json:
         abort(400)
 
     food = foodService.create(request.json)
 
     return jsonify(food), 201
+
+@app.route('/api/food/<int:food_id>', methods=['DELETE'])
+def delete_food(food_id):
+    foodService.delete(food_id)
+    return jsonify({'result': True})
+    
