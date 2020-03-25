@@ -27,14 +27,15 @@ export default {
     name: "add-food-form",
     data() {
         return {
-            currentFood: {"name": "", "kcal": ""},
-            lastCreated: {"name": "", "kcal": ""}
+            currentFood: {"id": 0, "name": "", "kcal": ""},
+            lastCreated: {"id": 0, "name": "", "kcal": ""}
         };
     },
     methods: {
         createFood: function(){
-            this.lastCreated = this.currentFood;
-            this.currentFood = {"name": "", "kcal": ""};
+            FoodService.createFood(this.currentFood)
+                .then(response => this.lastCreated = response);
+            this.currentFood = {"id": 0, "name": "", "kcal": ""};
             this.$refs.fooodnameref.focus();
         }
     }
