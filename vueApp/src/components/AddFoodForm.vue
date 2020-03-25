@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { FoodService } from "../common/api.service";
+import FoodService from "../common/api.service";
 
 export default {
     name: "add-food-form",
@@ -31,9 +31,12 @@ export default {
             lastCreated: {"id": 0, "name": "", "kcal": ""}
         };
     },
+    mounted() {
+        this.foodService = new FoodService();
+    },
     methods: {
         createFood: function(){
-            FoodService.createFood(this.currentFood)
+            this.foodService.createFood(this.currentFood)
                 .then(response => this.lastCreated = response);
             this.currentFood = {"id": 0, "name": "", "kcal": ""};
             this.$refs.fooodnameref.focus();

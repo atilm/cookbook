@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { FoodService } from "../common/api.service";
+import FoodService from "../common/api.service";
 
 export default {
     name: "FoodList",
@@ -19,12 +19,13 @@ export default {
         };
     },
     mounted() {
+        this.foodService = new FoodService();
         this.updateList();
     },
     methods: {
         updateList: function(){
             let vm = this;
-            FoodService.getAll().then(items => this.foodItems = items);
+            this.foodService.getAll().then(items => this.foodItems = items);
         }
     }
 };
