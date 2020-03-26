@@ -20,8 +20,10 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 text-center">
+        <div class="col-sm">
           <add-food-form />
+        </div>
+        <div class="col-sm">
           <food-list />
         </div>
       </div>
