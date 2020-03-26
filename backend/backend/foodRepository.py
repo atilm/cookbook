@@ -16,12 +16,16 @@ class FoodRepository:
         self._persist()
         return food
     
-    def Update(self, food):
+    def Update(self, food_id, food):
         if food.id == None:
+            return
+
+        if food.id != food_id:
             return
 
         self.foodStore[food.id] = food
         self._persist()
+        return self.foodStore[food_id]
 
     def GetAll(self):
         return self.foodStore.values()

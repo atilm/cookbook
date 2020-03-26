@@ -22,13 +22,14 @@
 
 <script>
 import FoodService from "../common/api.service";
+import Food from "../common/food";
 
 export default {
     name: "add-food-form",
     data() {
         return {
-            currentFood: {"id": 0, "name": "", "kcal": ""},
-            lastCreated: {"id": 0, "name": "", "kcal": ""}
+            currentFood: new Food(),
+            lastCreated: new Food()
         };
     },
     mounted() {
@@ -38,7 +39,7 @@ export default {
         createFood: function(){
             this.foodService.createFood(this.currentFood)
                 .then(response => this.lastCreated = response);
-            this.currentFood = {"id": 0, "name": "", "kcal": ""};
+            this.currentFood = new Food();
             this.$refs.fooodnameref.focus();
         }
     }

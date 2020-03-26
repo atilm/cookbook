@@ -32,6 +32,15 @@ def create_food():
 
     return jsonify(food), 201
 
+@app.route('/api/food/<int:food_id>', methods=['PUT'])
+def update_food():
+    if not request.json:
+        abort(400)
+
+    food = foodService.update(food_id, request.json)
+
+    return jsonify(food), 201
+
 @app.route('/api/food/<int:food_id>', methods=['DELETE'])
 def delete_food(food_id):
     foodService.delete(food_id)
