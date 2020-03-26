@@ -1,20 +1,16 @@
 <template>
     <div>
         <form @submit.prevent="createFood">
-        <fieldset>
-            <legend>New food</legend>
-            <p>
-            <label for="foodName">Name</label>
-            <input v-model="currentFood.name" ref="fooodnameref" id="foodName">
-            </p>
-            <p>
-            <label for="calories">kcal / 100 g</label>
-            <input v-model="currentFood.kcal" id="calories">
-            </p>
-            <p>
-            <button type="submit">Create</button>
-            </p>
-        </fieldset>
+            <legend>Create Food</legend>
+            <div class="form-group">
+                <label for="foodName">Name</label>
+                <input type="text" class="form-control" id="foodName" v-model="currentFood.name" ref="fooodnameref">
+            </div>
+            <div class="form-group">
+                <label for="calories">kcal / 100 g</label>
+                <input type="number" class="form-control" id="calories" v-model="currentFood.kcal">
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
         </form>
         <p>Last created: {{lastCreated.name}} ({{lastCreated.kcal}})</p>
     </div>

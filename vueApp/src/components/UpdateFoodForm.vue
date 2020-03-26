@@ -1,22 +1,22 @@
 <template>
-    <div v-if="food.id !== null">
+    <div v-if="currentFood.id !== null">
         <form @submit.prevent="updateFood">
         <fieldset>
             <legend>Edit food</legend>
-            <p>
-            <label for="foodName">Name</label>
-            <input v-model="currentFood.name" ref="fooodnameref" id="foodName">
-            </p>
-            <p>
-            <label for="calories">kcal / 100 g</label>
-            <input v-model="currentFood.kcal" id="calories">
-            </p>
-            <p>
-            <button type="submit">Update</button>
-            </p>
+            <div class="form-group">
+                <label for="foodName">Name</label>
+                <input type="text" class="form-control" id="foodName" v-model="currentFood.name" ref="fooodnameref">
+            </div>
+            <div class="form-group">
+                <label for="calories">kcal / 100 g</label>
+                <input type="number" class="form-control" id="calories" v-model="currentFood.kcal">
+            </div>
+            <div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button class="btn btn-secondary" @click="cancel">Cancel</button>
+            </div>
         </fieldset>
         </form>
-        <p>Last updated: {{lastUpdated.name}} ({{lastUpdated.kcal}})</p>
     </div>
 </template>
 
@@ -29,8 +29,7 @@ export default {
     props: ["food"],
     data() {
         return {
-            currentFood: this.food,
-            lastUpdated: new Food()
+            currentFood: new Food()
         }
     },
     mounted() {
@@ -38,7 +37,7 @@ export default {
     },
     watch: {
         food: function(newVal, oldVal) {
-            this.currentFood = newVal;
+            this.currentFood = Object.assign({}, newVal);
         }
     },
     methods: {
@@ -46,7 +45,9 @@ export default {
             this.foodService.updateFood(this.currentFood)
                 .then(response => this.lastUpdated = response);
             this.currentFood = new Food();
-            this.$refs.fooodnameref.focus();
+        },
+        cancel: function(){
+            this.currentFood = new Food();
         }
     }
 }
