@@ -5,18 +5,18 @@
             <legend>Edit food</legend>
             <p>
             <label for="foodName">Name</label>
-            <input v-model="food.name" ref="fooodnameref" id="foodName">
+            <input v-model="currentFood.name" ref="fooodnameref" id="foodName">
             </p>
             <p>
             <label for="calories">kcal / 100 g</label>
-            <input v-model="food.kcal" id="calories">
+            <input v-model="currentFood.kcal" id="calories">
             </p>
             <p>
             <button type="submit">Update</button>
             </p>
         </fieldset>
         </form>
-        <p>Last updated: {{lastUpdate.name}} ({{lastUpdate.kcal}})</p>
+        <p>Last updated: {{lastUpdated.name}} ({{lastUpdated.kcal}})</p>
     </div>
 </template>
 
@@ -30,13 +30,22 @@ export default {
     data() {
         return {
             currentFood: this.food,
-            lastUpdate: new Food()
+            lastUpdated: new Food()
+        }
+    },
+    mounted() {
+        this.foodService = new FoodService();
+    },
+    watch: {
+        food: function(newVal, oldVal) {
+            this.currentFood = newVal;
         }
     },
     methods: {
         updateFood: function(){
-            this.lastUpdate = this.food;
-            this.food = new Food();
+            this.foodService.updateFood(this.currentFood)
+                .then(response => this.lastUpdated = response);
+            this.currentFood = new Food();
             this.$refs.fooodnameref.focus();
         }
     }

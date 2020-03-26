@@ -33,7 +33,7 @@ def create_food():
     return jsonify(food), 201
 
 @app.route('/api/food/<int:food_id>', methods=['PUT'])
-def update_food():
+def update_food(food_id):
     if not request.json:
         abort(400)
 

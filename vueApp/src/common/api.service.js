@@ -33,4 +33,18 @@ export default class FoodService {
                 console.error('Error:', error);
             });
     }
+
+    updateFood(foodObject) {
+        return fetch(`${this.url}/${foodObject.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(foodObject),
+            })
+            .then((response) => response.json())
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
 };
