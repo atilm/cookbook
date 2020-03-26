@@ -1,13 +1,18 @@
 <template>
     <div id="foodList">
         <update-food-form :food="foodToUpdate" />
-        <h1 class="mt-5">List of food:</h1>
-        <button @click="updateList">Refresh</button>
-        <ul class="list-unstyled">
-            <li v-for="(food) in foodItems" :key="food.id">{{food.id}} {{food.name}} ({{food.kcal}} kcal)
-                <Button @click="deleteFood(food.id)">Delete</Button>
-                <Button @click="editFood(food)">Edit</Button></li>
-        </ul>
+        
+        <h2>List of food <button class="btn btn-dark btn-sm" @click="updateList">Refresh</button></h2>
+        <table class="table">
+            <tbody>
+                <tr  v-for="(food) in foodItems" :key="food.id">
+                    <td>{{food.name}}</td>
+                    <td>({{food.kcal}} kcal)</td>
+                    <td><Button @click="editFood(food)" class="btn btn-primary btn-sm">Edit</Button></td>
+                    <td><Button @click="deleteFood(food.id)" class="btn btn-secondary btn-sm">Delete</Button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
