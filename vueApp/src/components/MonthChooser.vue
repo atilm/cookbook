@@ -2,8 +2,9 @@
     <form class="form-inline">
         <div v-for="month in allMonths" :key="month" class="form-group">
             <label>{{month}}</label><br/>
-            <input type="checkbox" :id="month" :value="month" v-model="value" v-on:change="$emit('input', value)">
+            <input type="checkbox" :id="month" :value="month" v-model="checkedMonths" v-on:change="$emit('input', checkedMonths)">
         </div>
+        <button class="btn-secondary btn-sm" @click.prevent="checkAll">All</button>
     </form>
 </template>
 
@@ -15,6 +16,17 @@ export default {
         return {
             "checkedMonths": [],
             "allMonths": ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        }
+    },
+    watch: {
+        value: function(newVal, oldVal) {
+            this.checkedMonths = newVal;
+        }
+    },
+    methods: {
+        checkAll: function() {
+            this.checkedMonths = [...this.allMonths];
+            this.$emit('input', this.checkedMonths)
         }
     }
 }
