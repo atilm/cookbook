@@ -8,6 +8,7 @@
                 <tr  v-for="(food) in foodItems" :key="food.id">
                     <td>{{food.name}}</td>
                     <td>({{food.kcal}} kcal)</td>
+                    <td><div v-for="month in food.seasonMonths" :key="month">{{month}}</div></td>
                     <td><Button @click="editFood(food)" class="btn btn-primary btn-sm">Edit</Button></td>
                     <td><Button @click="deleteFood(food.id)" class="btn btn-secondary btn-sm">Delete</Button></td>
                 </tr>

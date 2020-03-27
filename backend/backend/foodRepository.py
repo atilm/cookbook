@@ -32,7 +32,7 @@ class FoodRepository:
 
     def GetById(self, id):
         if not(id in self.foodStore):
-            return Food(None, None)
+            return Food(None, None, [])
 
         return self.foodStore[id]
 
