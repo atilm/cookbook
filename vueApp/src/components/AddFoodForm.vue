@@ -10,8 +10,13 @@
                 <label for="calories">kcal / 100 g</label>
                 <input type="number" class="form-control" id="calories" v-model="currentFood.kcal">
             </div>
+            <div class="form-group">
+                <month-chooser v-model="currentFood.seasonMonths"/>
+            </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
+        <p>Current:  {{currentFood.name}} ({{currentFood.kcal}}  </p>
+        <p v-for="month in currentFood.seasonMonths" :key="month">{{month}}</p>
         <p>Last created: {{lastCreated.name}} ({{lastCreated.kcal}})</p>
     </div>
 </template>

@@ -3,5 +3,6 @@ export default class Food {
         this.id = null;
         this.name = "";
         this.kcal = null;
+        this.seasonMonths = [];
     }
 }
