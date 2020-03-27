@@ -14,13 +14,13 @@ export default {
     props: ["value"],
     data() {
         return {
-            "checkedMonths": [],
+            "checkedMonths": [...this.value],
             "allMonths": ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         }
     },
     watch: {
         value: function(newVal, oldVal) {
-            this.checkedMonths = newVal;
+            this.checkedMonths = [...newVal];
         }
     },
     methods: {

@@ -11,6 +11,10 @@
                 <label for="calories">kcal / 100 g</label>
                 <input type="number" class="form-control" id="calories" v-model="currentFood.kcal">
             </div>
+            <div class="form-group">
+                <label for="seasonMonthChooser">Season months</label>
+                <month-chooser id="seasonMonthChooser" v-model="currentFood.seasonMonths"/>
+            </div>
             <div>
             <button type="submit" class="btn btn-primary">Update</button>
             <button class="btn btn-secondary" @click="cancel">Cancel</button>
