@@ -30,6 +30,9 @@ class FoodRepository:
     def GetAll(self):
         return self.foodStore.values()
 
+    def GetBySearchTerm(self, search_term):
+        return filter(lambda food: search_term in food.name, self.foodStore.values())
+
     def GetById(self, id):
         if not(id in self.foodStore):
             return Food(None, None, [])

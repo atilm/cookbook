@@ -11,6 +11,9 @@ class FoodService:
     def get_all(self):
         return list(map(lambda i: i.to_dict(), self.repository.GetAll()))
 
+    def get_by_search_term(self, search_term):
+        return list(map(lambda i: i.to_dict(), self.repository.GetBySearchTerm(search_term)))
+
     def get_by_id(self, id):
         return self.repository.GetById(id).to_dict()
 
