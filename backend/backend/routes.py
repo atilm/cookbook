@@ -14,8 +14,8 @@ def not_found(error):
 
 @app.route('/api/food', methods=['GET'])
 def get_all_food():
-    if "searchterm" in request.args:
-        return jsonify(foodService.get_by_search_term(request.args["searchterm"]))
+    if "searchTerm" in request.args:
+        return jsonify(foodService.get_by_search_term(request.args["searchTerm"]))
     else:
         return jsonify(foodService.get_all())
 

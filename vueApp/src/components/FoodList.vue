@@ -3,6 +3,10 @@
         <update-food-form :food="foodToUpdate" />
         
         <h2>List of food <button class="btn btn-dark btn-sm" @click="updateList">Refresh</button></h2>
+        <form @submit.prevent="searchFood">
+            <input type="text" class="form-control" v-model="searchTerm"/>
+            <Button type="submit" class="btn btn-primary">Search</Button>
+        </form>
         <table class="table">
             <tbody>
                 <tr  v-for="(food) in foodItems" :key="food.id">
@@ -26,7 +30,8 @@ export default {
     data() {
         return {
             foodItems: [],
-            foodToUpdate: new Food()
+            foodToUpdate: new Food(),
+            searchTerm: ""
         };
     },
     mounted() {
@@ -37,6 +42,12 @@ export default {
         updateList: function(){
             let vm = this;
             this.foodService.getAll().then(items => this.foodItems = items);
+        },
+        searchFood: function(){
+            console.log("search for" + this.searchTerm)
+            let vm = this;
+            this.foodService.getBySearchTerm(this.searchTerm)
+                .then(items => this.foodItems = items);
         },
         deleteFood: function(id){
             let vm = this;

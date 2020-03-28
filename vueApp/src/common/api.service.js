@@ -10,6 +10,15 @@ export default class FoodService {
                 console.log(`Fetch failed: ${ e }`);
             });
     }
+
+    getBySearchTerm(searchTerm) {
+        let requestUrl = `${this.url}?searchTerm=${searchTerm}`;
+        return fetch(requestUrl)
+            .then(result => result.json())
+            .catch(function(e){
+                console.log(`Fetch failed: ${ e }`);
+            });
+    }
     
     createFood(foodObject) {
         return fetch(this.url, {
