@@ -4,7 +4,7 @@
             <label>{{month}}</label><br/>
             <input type="checkbox" :id="month" :value="month" v-model="checkedMonths" v-on:change="$emit('input', checkedMonths)">
         </div>
-        <button class="btn-secondary btn-sm" @click.prevent="checkAll">All</button>
+        <button class="btn-secondary btn-sm" @click.prevent="uncheckAll">Uncheck all</button>
     </form>
 </template>
 
@@ -24,8 +24,8 @@ export default {
         }
     },
     methods: {
-        checkAll: function() {
-            this.checkedMonths = [...this.allMonths];
+        uncheckAll: function() {
+            this.checkedMonths = [];
             this.$emit('input', this.checkedMonths)
         }
     }
