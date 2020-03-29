@@ -1,5 +1,6 @@
 from backend.foodRepository import FoodRepository
 from backend.food import Food
+import random
 
 class FoodService:
     def __init__(self):
@@ -16,6 +17,11 @@ class FoodService:
 
     def get_by_id(self, id):
         return self.repository.GetById(id).to_dict()
+
+    def get_random(self, requestedNumber):
+        allItems = list(self.repository.GetAll())
+        items = [random.choice(allItems) for i in range(requestedNumber)]
+        return list(map(lambda i: i.to_dict(), items))
 
     def update(self, food_id, jsonData):
         return self.repository.Update(food_id, Food.fromJson(jsonData)).to_dict()

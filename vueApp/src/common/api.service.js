@@ -19,6 +19,15 @@ export default class FoodService {
                 console.log(`Fetch failed: ${ e }`);
             });
     }
+
+    getRandomlyChosen(number) {
+        let requestUrl = `${this.url}/random?number=${number}`;
+        return fetch(requestUrl)
+            .then(result => result.json())
+            .catch(function(e){
+                console.log(`Fetch failed: ${ e }`);
+            });
+    }
     
     createFood(foodObject) {
         return fetch(this.url, {
