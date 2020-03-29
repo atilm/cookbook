@@ -9,25 +9,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
+              <router-link to="/foodAdmin">Food Admin Page</router-link>
+              <router-link to="/randomFood">Five random foods</router-link>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <add-food-form />
-        </div>
-        <div class="col--8">
-          <food-list />
-        </div>
-      </div>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
