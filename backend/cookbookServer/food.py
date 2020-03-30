@@ -1,5 +1,5 @@
 
-class Food():
+class Food:
     def __init__(self, name, kcal, seasonMonths):
         self.id = None
         self.name = name

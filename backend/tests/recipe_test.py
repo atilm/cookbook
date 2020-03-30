@@ -20,6 +20,3 @@ class TestRecipe(unittest.TestCase):
         self.assertEqual(restoredRecipe.tags, recipe.tags)
         self.assertEqual(restoredRecipe.ingredients, recipe.ingredients)
         self.assertEqual(restoredRecipe.instructions, recipe.instructions)
-
-# if __name__ == '__main__()':
-#     unittest.main()

@@ -1,4 +1,4 @@
-class Recipe():
+class Recipe:
     def __init__(self):
         self.id = None
         self.name = ""
