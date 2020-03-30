@@ -1,5 +1,5 @@
-from backend.food import Food
-from backend.config import Config
+from cookbookServer.food import Food
+from cookbookServer.config import Config
 from os import path
 import json
 

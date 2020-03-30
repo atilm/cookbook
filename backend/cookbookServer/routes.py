@@ -3,8 +3,8 @@ from flask import jsonify
 from flask import abort
 from flask import make_response
 from flask import request
-from backend import app
-from backend.foodService import FoodService
+from cookbookServer import app
+from cookbookServer.foodService import FoodService
 
 foodService = FoodService()
 

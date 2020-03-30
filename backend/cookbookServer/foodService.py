@@ -1,5 +1,5 @@
-from backend.foodRepository import FoodRepository
-from backend.food import Food
+from cookbookServer.foodRepository import FoodRepository
+from cookbookServer.food import Food
 import random
 
 class FoodService:
