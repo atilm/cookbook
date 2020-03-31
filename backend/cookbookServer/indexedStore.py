@@ -23,7 +23,7 @@ class IndexedStore:
         return self.objectDictionary[index]
 
     def remove(self, index):
-        return del self.objectDictionary[index]
+        del self.objectDictionary[index]
 
     def _next_index(self):
         self.currentIndex += 1
