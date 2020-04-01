@@ -15,6 +15,18 @@ class IndexedStore:
     def add(self, object):
         object.id = self._next_index()
         self.objectDictionary[object.id] = object
+        return object
+
+    def update(self, object):
+        if object.id == None:
+            raise Exception("Object to update has no id.")
+
+        if not(object.id in self.objectDictionary):
+            raise Exception("Object id to update does not exist.")
+
+        self.objectDictionary[object.id] = object
+        
+        return object
 
     def get_all(self):
         return list(self.objectDictionary.values())

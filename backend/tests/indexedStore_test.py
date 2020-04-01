@@ -30,7 +30,9 @@ class TestIndexedStore(unittest.TestCase):
 
     def test_add(self):
         store = IndexedStore([])
-        store.add(IdObject(None))
+        returnedObject = store.add(IdObject(None))
+
+        self.assertEqual(returnedObject.id, 1)
 
         self.assertEqual(len(store.get_all()), 1)
         self.assertEqual(store.get(1).id, 1)
