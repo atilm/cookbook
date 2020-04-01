@@ -5,12 +5,16 @@ from flask import make_response
 from flask import request
 from cookbookServer import app
 from cookbookServer.foodService import FoodService
+from cookbookServer.recipeService import RecipeService
 
 foodService = FoodService()
+recipeService = RecipeService()
 
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
+# Food
 
 @app.route('/api/food', methods=['GET'])
 def get_all_food():
@@ -58,3 +62,38 @@ def delete_food(food_id):
     foodService.delete(food_id)
     return jsonify({'result': True})
     
+# Recipe
+
+@app.route('/api/recipe', methods=['POST'])
+def create_recipe():
+    if not request.json:
+        abort(400)
+
+    recipe = recipeService.create(request.json)
+
+    return jsonify(recipe), 201
+
+@app.route('/api/recipe/<int:recipe_id>', methods=['PUT'])
+def update_recipe(recipe_id):
+    if not request.json:
+        abort(400)
+
+    recipe = recipeService.update(recipe_id, request.json)
+
+    return jsonify(recipe), 201
+
+@app.route('/api/recipe/<int:recipe_id>', methods=['DELETE'])
+def delete_recipe(recipe_id):
+    recipeService.delete(recipe_id)
+    return jsonify({'result': True})
+
+@app.route('/api/recipe', methods=['GET'])
+def get_all_recipes():
+    return jsonify(recipeService.get_all())
+
+@app.route('/api/recipe/<int:recipe_id>', methods=['GET'])
+def get_recipe(recipe_id):
+    recipe = recipeService.get_by_id(recipe_id)
+    if recipe['id'] is None:
+        abort(404)
+    return jsonify(recipe)
