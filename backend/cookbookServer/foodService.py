@@ -28,5 +28,3 @@ class FoodService:
 
     def delete(self, id):
         self.repository.Delete(id)
-
-    
