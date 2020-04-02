@@ -2,6 +2,7 @@ class Recipe:
     def __init__(self):
         self.id = None
         self.name = ""
+        self.numberOfPeople = None
         self.tags = []
         self.ingredients = []
         self.instructions = ""
@@ -19,6 +20,7 @@ class Recipe:
 
         recipe.id = dict['id']
         recipe.name = dict['name']
+        recipe.numberOfPeople = dict['numberOfPeople']
         recipe.tags = dict['tags']
         recipe.ingredients = dict['ingredients']
         recipe.instructions = dict['instructions']
@@ -29,6 +31,7 @@ class Recipe:
         return { 
             'id' : self.id,
             'name' : self.name,
+            'numberOfPeople' : self.numberOfPeople,
             'tags' : self.tags,
             'ingredients' : self.ingredients,
             'instructions' : self.instructions }

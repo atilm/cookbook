@@ -99,6 +99,7 @@ class TestRecipeRepository(unittest.TestCase):
     def _assert_recipes_equal(self, recipeA, recipeB):
         self.assertEqual(recipeA.id, recipeB.id)
         self.assertEqual(recipeA.name, recipeB.name)
+        self.assertEqual(recipeA.numberOfPeople, recipeB.numberOfPeople)
         self.assertEqual(recipeA.tags, recipeB.tags)
         self.assertEqual(recipeA.ingredients, recipeB.ingredients)
         self.assertEqual(recipeA.instructions, recipeB.instructions)
@@ -106,6 +107,7 @@ class TestRecipeRepository(unittest.TestCase):
     def _create_default_recipe(self):
         recipe = Recipe()
         recipe.name = "The Recipe Name"
+        recipe.numberOfPeople = 4
         recipe.tags = ["Main course", "vegetarian"]
         recipe.add_ingredient(1, "Rice", 200, "g")
         recipe.add_ingredient(2, "Water", 150, "ml")
