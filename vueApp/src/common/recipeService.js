@@ -8,4 +8,8 @@ export default class RecipeService {
     get_all() {
         return this.apiService.getAll();
     }
+
+    get(id) {
+        return this.apiService.get(id);
+    }
 };

@@ -11,6 +11,14 @@ export default class ApiService {
             });
     }
 
+    get(id) {
+        return fetch(`${this.url}/${id}`)
+            .then(result => result.json())
+            .catch(function(e){
+                console.log(`Fetch failed: ${ e }`);
+            });
+    }
+
     getBySearchTerm(searchTerm) {
         let requestUrl = `${this.url}?searchTerm=${searchTerm}`;
         return fetch(requestUrl)
