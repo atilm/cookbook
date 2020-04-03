@@ -6,7 +6,7 @@
             <table class="table">
                 <tbody>
                     <tr  v-for="(recipe) in recipeItems" :key="recipe.id">
-                        <td>{{recipe.name}}</td>
+                        <td><router-link :to="{ name: 'recipeDetails', params: { id: recipe.id }}">{{recipe.name}}</router-link></td>
                         <td>{{getTagsString(recipe)}}</td>
                     </tr>
                 </tbody>
