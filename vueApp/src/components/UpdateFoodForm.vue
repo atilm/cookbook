@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         updateFood: function(){
-            this.foodService.updateFood(this.currentFood)
+            this.foodService.update(this.currentFood)
                 .then(response => this.lastUpdated = response);
             this.currentFood = new Food();
         },

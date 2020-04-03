@@ -1,6 +1,6 @@
-export default class FoodService {
-    constructor() {
-        this.url = "http://localhost:5000/api/food";
+export default class ApiService {
+    constructor(endpoint) {
+        this.url = `http://localhost:5000/api/${endpoint}`;
     }
 
     getAll() {
@@ -29,13 +29,13 @@ export default class FoodService {
             });
     }
     
-    createFood(foodObject) {
+    create(object) {
         return fetch(this.url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(foodObject),
+        body: JSON.stringify(object),
         })
         .then((response) => response.json())
         .catch((error) => {
@@ -43,7 +43,7 @@ export default class FoodService {
         });
     }
 
-    deleteFood(id) {
+    delete(id) {
         return fetch(`${this.url}/${id}`, {
             method: 'DELETE'
             })
@@ -52,17 +52,33 @@ export default class FoodService {
             });
     }
 
-    updateFood(foodObject) {
-        return fetch(`${this.url}/${foodObject.id}`, {
+    update(object) {
+        return fetch(`${this.url}/${object.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(foodObject),
+            body: JSON.stringify(object),
             })
             .then((response) => response.json())
             .catch((error) => {
                 console.error('Error:', error);
             });
+    }
+};
+
+export default class FoodService extends ApiService {
+    constructor() {
+        super("Food");
+    }
+};
+
+export default class RecipeService {
+    constructor() {
+        this.apiService = new ApiService("Recipe");
+    }
+
+    get_all() {
+        return this.apiService.getAll();
     }
 };

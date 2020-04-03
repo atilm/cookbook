@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         createFood: function(){
-            this.foodService.createFood(this.currentFood)
+            this.foodService.create(this.currentFood)
                 .then(response => this.lastCreated = response);
             this.currentFood = new Food();
             this.$refs.fooodnameref.focus();

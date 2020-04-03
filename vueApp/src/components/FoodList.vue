@@ -56,7 +56,7 @@ export default {
         },
         deleteFood: function(id){
             let vm = this;
-            this.foodService.deleteFood(id).then(vm.updateList);
+            this.foodService.delete(id).then(vm.updateList);
         },
         editFood: function(food){
             this.foodToUpdate = food;
