@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import FoodService from "../common/api.service"
+import FoodService from "../common/foodService"
 
 export default {
     name: 'random-food-view',

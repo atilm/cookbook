@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import FoodService from "../common/api.service";
+import FoodService from "../common/foodService";
 import Food from "../common/food";
 
 export default {

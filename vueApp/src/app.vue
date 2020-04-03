@@ -11,6 +11,7 @@
             <li class="nav-item active">
               <router-link to="/foodAdmin">Food Admin Page</router-link>
               <router-link to="/randomFood">Five random foods</router-link>
+              <router-link to="/recipeList">Recipes</router-link>
             </li>
           </ul>
         </div>

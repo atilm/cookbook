@@ -66,19 +66,3 @@ export default class ApiService {
             });
     }
 };
-
-export default class FoodService extends ApiService {
-    constructor() {
-        super("Food");
-    }
-};
-
-export default class RecipeService {
-    constructor() {
-        this.apiService = new ApiService("Recipe");
-    }
-
-    get_all() {
-        return this.apiService.getAll();
-    }
-};

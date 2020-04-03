@@ -7,6 +7,7 @@ import UpdateFoodForm from './components/UpdateFoodForm.vue';
 import MonthChooser from './components/MonthChooser.vue';
 import FoodAdminView from './views/FoodAdminView.vue';
 import RandomFoodView from './views/RandomFoodView.vue';
+import RecipeListView from './views/ListRecipesView.vue';
 
 Vue.use(VueRouter);
 
@@ -18,7 +19,8 @@ Vue.component('month-chooser', MonthChooser);
 const routes = [
   { path: '/', redirect: '/randomFood' },
   { path: '/foodAdmin', component: FoodAdminView },
-  { path: '/randomFood', component: RandomFoodView }
+  { path: '/randomFood', component: RandomFoodView },
+  { path: '/recipeList', component: RecipeListView}
 ]
 
 const router = new VueRouter({
