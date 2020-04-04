@@ -6,9 +6,11 @@ from flask import request
 from cookbookServer import app
 from cookbookServer.foodService import FoodService
 from cookbookServer.recipeService import RecipeService
+from cookbookServer.tagService import TagService
 
 foodService = FoodService()
 recipeService = RecipeService()
+tagService = TagService()
 
 @app.errorhandler(404)
 def not_found(error):
@@ -97,3 +99,8 @@ def get_recipe(recipe_id):
     if recipe['id'] is None:
         abort(404)
     return jsonify(recipe)
+
+# Tags
+@app.route('/api/tag', methods=['GET'])
+def get_all_tags():
+    return jsonify(tagService.get_all())
