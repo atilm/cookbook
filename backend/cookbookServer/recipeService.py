@@ -1,9 +1,10 @@
 from cookbookServer.recipeRepository import RecipeRepository
 from cookbookServer.recipe import Recipe
+from cookbookServer.config import Config
 
 class RecipeService:
     def __init__(self):
-        self.repository = RecipeRepository("recipeStore.json")
+        self.repository = RecipeRepository(Config.RECIPE_REPOSITORY)
 
     def create(self, jsonData):
         return self.repository.Save(Recipe.from_dict(jsonData)).to_dict()
