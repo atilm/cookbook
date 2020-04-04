@@ -16,8 +16,7 @@
                 <div class="form-inline" id="ingredientForm" v-for="ingredient in currentRecipe.ingredients" :key="ingredient.food_id">
                     <input type="number" class="form-control" v-model="ingredient.amount" />
                     <vue-select :options="availableUnits" v-model="ingredient.unit" />
-                    <vue-select :options="availableFood" label="name" v-model="ingredient.food_name" />
-                    <!--input type="text" class="form-control" v-model="ingredient.food_name" /-->
+                    <vue-select :options="availableFood" label="name" v-model="ingredient.food" />
                 </div>
                 <button @click="addIngredient" class="btn btn-secondary btn-sm">Add</button>
                 <div class="form-group">
@@ -59,13 +58,12 @@ export default {
         },
         loadAvailableFood: function() {
             let vm = this;
-            this.foodService.getAll().then(foodList => this.availableFood = foodList);
+            this.foodService.get_all_names().then(foodList => this.availableFood = foodList);
         },
         addIngredient: function() {
             this.currentRecipe.ingredients.push(
                 {
-                    food_id: null,
-                    food_name: "",
+                    food: null,
                     amount: null,
                     unit: ""
                 }

@@ -6,8 +6,8 @@
                 <router-link :to="{ name: 'editRecipe', params: { id: currentRecipe.id }}" tag="button" class="btn btn-primary btn-sm">Edit</router-link>
                 <p>Für {{currentRecipe.numberOfPeople}} Personen</p>
                 <ul>
-                    <li v-for="ingredient in currentRecipe.ingredients" :key="ingredient.food_id">
-                        {{ingredient.amount}} {{ingredient.unit}} {{ingredient.food_name}}
+                    <li v-for="ingredient in currentRecipe.ingredients" :key="ingredient.food.id">
+                        {{ingredient.amount}} {{ingredient.unit}} {{ingredient.food.name}}
                     </li>
                 </ul>
                 <p>{{currentRecipe.instructions}}</p>
