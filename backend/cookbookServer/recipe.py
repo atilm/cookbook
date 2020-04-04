@@ -28,24 +28,10 @@ class Recipe:
         recipe.name = dict['name']
         recipe.numberOfPeople = dict['numberOfPeople']
         recipe.tags = dict['tags']
-        recipe.ingredients = Recipe._updateIngredientsFormat(dict['ingredients'])
+        recipe.ingredients = dict['ingredients']
         recipe.instructions = dict['instructions']
         
         return recipe
-
-    @classmethod
-    def _updateIngredientsFormat(cls, jsonArray):
-        newFormat = []
-        for entry in jsonArray:
-            if 'food_id' in entry:
-                id = entry['food_id']
-                name = entry['food_name']
-                amount = entry['amount']
-                unit = entry['unit']
-                newFormat.append(Recipe.buildIngredient(id, name, amount, unit))
-            else:
-                newFormat.append(entry)
-        return newFormat
 
     def to_dict(self):
         return { 
