@@ -67,8 +67,8 @@ export default {
             this.service.get(id).then(recipe => this.currentRecipe = recipe);
         },
         loadAvailableTags: function() {
-            // todo: change to promise version
-            this.availableTags = this.tagService.get_all();
+            let vm = this;
+            this.tagService.get_all().then(tags => vm.availableTags = tags);
         },
         loadAvailableFood: function() {
             let vm = this;

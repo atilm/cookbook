@@ -12,4 +12,4 @@ class TagService:
             for tag in recipe.tags:
                 setOfTags.add(tag)
 
-        return setOfTags
+        return list(setOfTags)
