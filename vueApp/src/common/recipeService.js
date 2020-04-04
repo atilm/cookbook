@@ -12,4 +12,12 @@ export default class RecipeService {
     get(id) {
         return this.apiService.get(id);
     }
+
+    create(recipe) {
+        return this.apiService.create(recipe);
+    }
+
+    update(recipe) {
+        return this.apiService.update(recipe);
+    }
 };

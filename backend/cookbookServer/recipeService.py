@@ -7,7 +7,7 @@ class RecipeService:
         self.repository = RecipeRepository(Config.RECIPE_REPOSITORY)
 
     def create(self, jsonData):
-        return self.repository.Save(Recipe.from_dict(jsonData)).to_dict()
+        return self.repository.save(Recipe.from_dict(jsonData)).to_dict()
 
     def get_all(self):
         return self._to_json_list(self.repository.get_all())

@@ -12,6 +12,7 @@
               <router-link to="/foodAdmin">Food Admin Page</router-link>
               <router-link to="/randomFood">Five random foods</router-link>
               <router-link to="/recipeList">Recipes</router-link>
+              <router-link :to="{ name: 'editRecipe', params: { id: null }}">Create Recipe</router-link>
             </li>
           </ul>
         </div>

@@ -64,7 +64,11 @@ export default {
     methods: {
         loadRecipe: function(id) {
             let vm = this;
-            this.service.get(id).then(recipe => this.currentRecipe = recipe);
+            
+            if (id === null)
+                this.currentRecipe = new Recipe();
+            else
+                this.service.get(id).then(recipe => this.currentRecipe = recipe);
         },
         loadAvailableTags: function() {
             let vm = this;
@@ -87,7 +91,10 @@ export default {
             this.currentRecipe.ingredients.splice(index, 1);
         },
         saveChanges: function() {
-
+            if (this.currentRecipe.id === null)
+                this.service.create(this.currentRecipe);
+            else
+                this.service.update(this.currentRecipe);
         }
     }
 }
