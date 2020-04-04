@@ -9,6 +9,10 @@
                     <input type="text" class="form-control" id="recipeName" v-model="currentRecipe.name" />
                 </div>
                 <div class="form-group">
+                    <label for="tagsSelect">Tags</label>
+                    <vue-select multiple taggable push-tags :options="availableTags" v-model="currentRecipe.tags" />
+                </div>
+                <div class="form-group">
                     <label for="persons">Anzahl Personen</label>
                     <input type="number" class="form-control" id="persons" v-model="currentRecipe.numberOfPeople" />
                 </div>
@@ -34,6 +38,7 @@
 <script>
 import RecipeService from "../common/recipeService";
 import FoodService from "../common/foodService";
+import TagService from "../common/tagService";
 import Recipe from "../common/recipe";
 
 export default {
@@ -41,6 +46,7 @@ export default {
     data() {
         return {
             currentRecipe: new Recipe(),
+            availableTags: [],
             availableUnits: ["g", "ml", "El", "Tl", "Stück"],
             availableFood: []
         }
@@ -51,11 +57,18 @@ export default {
 
         this.foodService = new FoodService();
         this.loadAvailableFood();
+
+        this.tagService = new TagService();
+        this.loadAvailableTags();
     },
     methods: {
         loadRecipe: function(id) {
             let vm = this;
             this.service.get(id).then(recipe => this.currentRecipe = recipe);
+        },
+        loadAvailableTags: function() {
+            // todo: change to promise version
+            this.availableTags = this.tagService.get_all();
         },
         loadAvailableFood: function() {
             let vm = this;
