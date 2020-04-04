@@ -8,9 +8,10 @@ class Recipe:
         self.instructions = ""
 
     def add_ingredient(self, food_id, food_name, amount, unit):
-        self.ingredients.append(self.buildIngredient(food_id, food_name, amount, unit))
+        self.ingredients.append(Recipe.buildIngredient(food_id, food_name, amount, unit))
 
-    def buildIngredient(self, food_id, food_name, amount, unit):
+    @classmethod
+    def buildIngredient(cls, food_id, food_name, amount, unit):
         return {
             "food": {
                 "id": food_id,
@@ -27,12 +28,13 @@ class Recipe:
         recipe.name = dict['name']
         recipe.numberOfPeople = dict['numberOfPeople']
         recipe.tags = dict['tags']
-        recipe.ingredients = self._updateIngredientsFormat(dict['ingredients'])
+        recipe.ingredients = Recipe._updateIngredientsFormat(dict['ingredients'])
         recipe.instructions = dict['instructions']
         
         return recipe
 
-    def _updateIngredientsFormat(jsonArray):
+    @classmethod
+    def _updateIngredientsFormat(cls, jsonArray):
         newFormat = []
         for entry in jsonArray:
             if 'food_id' in entry:
@@ -40,7 +42,7 @@ class Recipe:
                 name = entry['food_name']
                 amount = entry['amount']
                 unit = entry['unit']
-                newFormat.append(self.buildIngredient(id, name, amount, unit))
+                newFormat.append(Recipe.buildIngredient(id, name, amount, unit))
             else:
                 newFormat.append(entry)
         return newFormat
