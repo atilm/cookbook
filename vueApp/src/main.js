@@ -9,6 +9,7 @@ import FoodAdminView from './views/FoodAdminView.vue';
 import RandomFoodView from './views/RandomFoodView.vue';
 import RecipeListView from './views/ListRecipesView.vue';
 import RecipeDetailsView from './views/RecipeDetailsView.vue';
+import EditRecipeView from './views/EditRecipeView.vue';
 
 Vue.use(VueRouter);
 
@@ -22,7 +23,8 @@ const routes = [
   { path: '/foodAdmin', component: FoodAdminView },
   { path: '/randomFood', component: RandomFoodView },
   { path: '/recipeList', component: RecipeListView},
-  { path: '/recipe/:id/details', name: 'recipeDetails', component: RecipeDetailsView}
+  { path: '/recipe/:id/details', name: 'recipeDetails', component: RecipeDetailsView},
+  { path: '/recipe/:id/edit', name: 'editRecipe', component: EditRecipeView}
 ]
 
 const router = new VueRouter({

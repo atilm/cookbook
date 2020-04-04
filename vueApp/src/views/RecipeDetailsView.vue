@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col">
                 <h1>{{currentRecipe.name}}</h1>
+                <router-link :to="{ name: 'editRecipe', params: { id: currentRecipe.id }}" tag="button" class="btn btn-primary btn-sm">Edit</router-link>
                 <p>Für {{currentRecipe.numberOfPeople}} Personen</p>
                 <ul>
                     <li v-for="ingredient in currentRecipe.ingredients" :key="ingredient.food_id">
