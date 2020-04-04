@@ -13,10 +13,11 @@
                     <input type="number" class="form-control" id="persons" v-model="currentRecipe.numberOfPeople" />
                 </div>
                 <label for="ingredientForm">Zutaten</label>
-                <div class="form-inline" id="ingredientForm" v-for="ingredient in currentRecipe.ingredients" :key="ingredient.food_id">
+                <div class="form-inline" id="ingredientForm" v-for="(ingredient, index) in currentRecipe.ingredients" :key="ingredient.food_id">
                     <input type="number" class="form-control" v-model="ingredient.amount" />
                     <vue-select :options="availableUnits" v-model="ingredient.unit" />
                     <vue-select :options="availableFood" label="name" v-model="ingredient.food" />
+                    <button class="btn btn-secondary btn-sm" @click="removeIngredient(index)">Remove</button>
                 </div>
                 <button @click="addIngredient" class="btn btn-secondary btn-sm">Add</button>
                 <div class="form-group">
@@ -68,6 +69,9 @@ export default {
                     unit: ""
                 }
             );
+        },
+        removeIngredient: function(index) {
+            this.currentRecipe.ingredients.splice(index, 1);
         },
         saveChanges: function() {
 
