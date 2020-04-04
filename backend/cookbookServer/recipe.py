@@ -8,11 +8,16 @@ class Recipe:
         self.instructions = ""
 
     def add_ingredient(self, food_id, food_name, amount, unit):
-        self.ingredients.append({ 
-            "food_id": food_id,
-            "food_name": food_name,
+        self.ingredients.append(self.buildIngredient(food_id, food_name, amount, unit))
+
+    def buildIngredient(self, food_id, food_name, amount, unit):
+        return {
+            "food": {
+                "id": food_id,
+                "name": food_name
+            },
             "amount": amount,
-            "unit": unit})
+            "unit": unit}
 
     @classmethod
     def from_dict(cls, dict):
@@ -22,10 +27,23 @@ class Recipe:
         recipe.name = dict['name']
         recipe.numberOfPeople = dict['numberOfPeople']
         recipe.tags = dict['tags']
-        recipe.ingredients = dict['ingredients']
+        recipe.ingredients = self._updateIngredientsFormat(dict['ingredients'])
         recipe.instructions = dict['instructions']
         
         return recipe
+
+    def _updateIngredientsFormat(jsonArray):
+        newFormat = []
+        for entry in jsonArray:
+            if 'food_id' in entry:
+                id = entry['food_id']
+                name = entry['food_name']
+                amount = entry['amount']
+                unit = entry['unit']
+                newFormat.append(self.buildIngredient(id, name, amount, unit))
+            else:
+                newFormat.append(entry)
+        return newFormat
 
     def to_dict(self):
         return { 

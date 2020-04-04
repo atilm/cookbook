@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueSelect from 'vue-select';
 import App from './App.vue';
 import FoodList from './components/FoodList.vue';
 import AddFoodForm from './components/AddFoodForm.vue';
@@ -10,9 +11,11 @@ import RandomFoodView from './views/RandomFoodView.vue';
 import RecipeListView from './views/ListRecipesView.vue';
 import RecipeDetailsView from './views/RecipeDetailsView.vue';
 import EditRecipeView from './views/EditRecipeView.vue';
+import 'vue-select/dist/vue-select.css';
 
 Vue.use(VueRouter);
 
+Vue.component('vue-select', VueSelect);
 Vue.component('food-list', FoodList);
 Vue.component('add-food-form', AddFoodForm);
 Vue.component('update-food-form', UpdateFoodForm);
