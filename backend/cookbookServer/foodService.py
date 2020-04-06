@@ -25,7 +25,7 @@ class FoodService:
         return list(map(lambda i: i.to_dict(), items))
 
     def update(self, food_id, jsonData):
-        return self.repository.Update(food_id, Food.fromJson(jsonData)).to_dict()
+        return self.repository.Update(Food.fromJson(jsonData)).to_dict()
 
     def delete(self, id):
         self.repository.Delete(id)
