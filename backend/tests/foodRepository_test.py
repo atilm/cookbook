@@ -45,6 +45,18 @@ class TestFoodRepository(unittest.TestCase):
         with self.assertRaises(Exception):
             repo.save(food)
 
+    def test_get(self):
+        saveRepo = FoodRepository(self.config)
+        foodOne = self.__createFood("foodOne")
+        foodTwo = self.__createFood("foodTwo")
+
+        returnedFoodOne = saveRepo.Save(foodOne)
+        returnedFoodTwo = saveRepo.Save(foodTwo)
+
+        loadRepo = FoodRepository(self.config)
+
+        self.__assert_food_equal(loadRepo.GetById(returnedFoodOne.id), returnedFoodOne)
+
     def __createFood(self, name):
         return Food(name, 1, ["Jan", "Feb"])
 
