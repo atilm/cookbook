@@ -2,7 +2,7 @@ import unittest
 import os
 import json
 from tests.testConfig import TestConfig
-from cookbookServer.indexedStore import IndexedStore
+from cookbookServer.database.indexedStore import IndexedStore
 
 class TestIndexedStore(unittest.TestCase):
     @classmethod

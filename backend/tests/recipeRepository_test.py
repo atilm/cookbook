@@ -1,7 +1,7 @@
 import unittest
 import os
 from tests.testConfig import TestConfig
-from cookbookServer.storeManager import StoreManager
+from cookbookServer.database.storeManager import StoreManager
 from cookbookServer.recipe import Recipe
 from cookbookServer.recipeRepository import RecipeRepository
 
