@@ -79,6 +79,24 @@ class TestFoodRepository(unittest.TestCase):
 
         self.assertEqual(loadRepo.GetById(2).kcal, 1234)
 
+    def test_delete(self):
+        saveRepo = FoodRepository(self.config)
+        foodOne = self.__createFood("foodOne")
+        foodTwo = self.__createFood("foodTwo")
+
+        returnedFoodOne = saveRepo.Save(foodOne)
+        returnedFoodTwo = saveRepo.Save(foodTwo)
+        
+        with self.assertRaises(Exception):
+            saveRepo.Delete(45)
+
+        saveRepo.Delete(returnedFoodOne.id)
+
+        loadRepo = FoodRepository(self.config)
+
+        self.assertEqual(len(loadRepo.GetAll()), 1)
+        self.__assert_food_equal(loadRepo.GetById(returnedFoodTwo.id), returnedFoodTwo)
+
     def __createFood(self, name):
         return Food(name, 1, ["Jan", "Feb"])
 

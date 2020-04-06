@@ -41,9 +41,11 @@ class FoodRepository:
         return self.foodStore[id]
 
     def Delete(self, id):
-        if id in self.foodStore:
-            del self.foodStore[id]
-            self._persist()
+        if not(id in self.foodStore):
+            raise Exception("Given id does not exist")
+        
+        del self.foodStore[id]
+        self._persist()
 
     def _persist(self):
         with open(self.filePath, "w") as f:
