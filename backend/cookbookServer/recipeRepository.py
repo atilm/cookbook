@@ -1,55 +1,36 @@
 from os import path
-import json
-from cookbookServer.config import Config
 from cookbookServer.recipe import Recipe
+from cookbookServer.storeManager import StoreManager
 from cookbookServer.indexedStore import IndexedStore
 
 class RecipeRepository:
-    def __init__(self, repositoryFileName):
-        self.repositoryFileName = repositoryFileName
-        self.recipeObjects = self._load()
-        self.store = IndexedStore(self.recipeObjects)
+    def __init__(self, config):
+        self.config = config
+        self.storeManager = StoreManager(self.config)
+        self.recipeStore = self.storeManager.instance.recipeStore
 
     def save(self, recipe):
         if recipe.id != None:
             raise Exception("Object to save already has an id.")
 
-        recipeWithId = self.store.add(recipe)
-        self._persist()
-        return recipeWithId
+        recipeWithId = self.recipeStore.add(recipe)
+
+        return Recipe.from_dict(recipeWithId)
 
     def get_all(self):
-        return self.store.get_all()
+        return self.__to_Recipes(self.recipeStore.get_all())
 
     def get(self, id):
-        return self.store.get(id)
+        return Recipe.from_dict(self.recipeStore.get(id))
 
     def update(self, recipe):
-        updatedRecipe = self.store.update(recipe)
-        self._persist()
-        return updatedRecipe
+        updatedRecipe = self.recipeStore.update(recipe)
+
+        return Recipe.from_dict(updatedRecipe)
 
     def delete(self, recipeId):
-        self.store.remove(recipeId)
-        self._persist()
+        self.recipeStore.remove(recipeId)
 
-    def _persist(self):
-        filePath = path.join(Config.DATABASE_FOLDER, self.repositoryFileName)
-        with open(filePath, "w") as f:
-            recipeList = self._to_json_list(self.store.get_all())
-            json.dump(recipeList, f)
-
-    def _load(self):
-        filePath = path.join(Config.DATABASE_FOLDER, self.repositoryFileName)
-
-        if (not(path.exists(filePath))):
-            return []
-
-        with open(filePath, "r") as f:
-            jsonArray = json.load(f)
-
-        return [Recipe.from_dict(js) for js in jsonArray]
-
-    def _to_json_list(self, objectList):
-        return list(map(lambda i: i.to_dict(), objectList))
+    def __to_Recipes(self, jsonArray):
+        return [Recipe.from_dict(json) for json in jsonArray]
 

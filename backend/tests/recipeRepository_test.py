@@ -1,19 +1,20 @@
 import unittest
 import os
+from tests.config import Config
 from cookbookServer.recipe import Recipe
 from cookbookServer.recipeRepository import RecipeRepository
 
 class TestRecipeRepository(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.testFile = "test_recipe_repo.json"
+        cls.config = Config()
 
     def setUp(self):
-        if (os.path.exists(self.testFile)):
-            os.remove(self.testFile)
+        if (os.path.exists(self.config.RECIPE_REPOSITORY)):
+            os.remove(self.config.RECIPE_REPOSITORY)
 
     def test_save_and_get_all(self):
-        saveRepo = RecipeRepository(self.testFile)
+        saveRepo = RecipeRepository(self.config)
         recipeOne = self._create_default_recipe()
         recipeTwo = self._create_default_recipe()
         recipeTwo.name = "Recipe Two"
@@ -24,7 +25,7 @@ class TestRecipeRepository(unittest.TestCase):
         self.assertEqual(returnedRecipeOne.id, 1)
         self.assertEqual(returnedRecipeTwo.id, 2)
 
-        loadRepo = RecipeRepository(self.testFile)
+        loadRepo = RecipeRepository(self.config)
 
         loadedRecipes = loadRepo.get_all()
 
@@ -36,13 +37,13 @@ class TestRecipeRepository(unittest.TestCase):
         recipe = self._create_default_recipe()
         recipe.id = 4
 
-        repo = RecipeRepository(self.testFile)
+        repo = RecipeRepository(self.config)
 
         with self.assertRaises(Exception):
             repo.save(recipe)
 
     def test_get(self):
-        saveRepo = RecipeRepository(self.testFile)
+        saveRepo = RecipeRepository(self.config)
         recipeOne = self._create_default_recipe()
         recipeTwo = self._create_default_recipe()
         recipeTwo.name = "Recipe Two"
@@ -50,12 +51,12 @@ class TestRecipeRepository(unittest.TestCase):
         returnedRecipeOne = saveRepo.save(recipeOne)
         returnedRecipeTwo = saveRepo.save(recipeTwo)
 
-        loadRepo = RecipeRepository(self.testFile)
+        loadRepo = RecipeRepository(self.config)
 
         self._assert_recipes_equal(loadRepo.get(returnedRecipeOne.id), returnedRecipeOne)
 
     def test_update(self):
-        saveRepo = RecipeRepository(self.testFile)
+        saveRepo = RecipeRepository(self.config)
         recipeOne = self._create_default_recipe()
         recipeTwo = self._create_default_recipe()
         recipeTwo.name = "Recipe Two"
@@ -73,12 +74,12 @@ class TestRecipeRepository(unittest.TestCase):
         returnedRecipeTwo.instructions = "New instructions"
         saveRepo.update(returnedRecipeTwo)
 
-        loadRepo = RecipeRepository(self.testFile)
+        loadRepo = RecipeRepository(self.config)
 
         self.assertEqual(loadRepo.get(2).instructions, "New instructions")
 
     def test_delete(self):
-        saveRepo = RecipeRepository(self.testFile)
+        saveRepo = RecipeRepository(self.config)
         recipeOne = self._create_default_recipe()
         recipeTwo = self._create_default_recipe()
         recipeTwo.name = "Recipe Two"
@@ -91,7 +92,7 @@ class TestRecipeRepository(unittest.TestCase):
 
         saveRepo.delete(returnedRecipeOne.id)
 
-        loadRepo = RecipeRepository(self.testFile)
+        loadRepo = RecipeRepository(self.config)
 
         self.assertEqual(len(loadRepo.get_all()), 1)
         self._assert_recipes_equal(loadRepo.get(returnedRecipeTwo.id), returnedRecipeTwo)
