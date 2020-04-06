@@ -137,5 +137,5 @@ dmypy.json
 .pytype/
 
 vueApp/package-lock.json
-backend/test_recipe_repo.json
-backend/testData/
+backend/testData/testFoodStore.json
+backend/testData/testRecipeStore.json

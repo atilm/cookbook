@@ -4,9 +4,10 @@ from os import path
 import json
 
 class FoodRepository:
-    def __init__(self):
+    def __init__(self, config):
         self.foodStore = {}
         self.currentId = 0
+        self.filePath = config.FOOD_REPOSITORY
         self._load()
 
     def Save(self, food):
@@ -28,7 +29,7 @@ class FoodRepository:
         return self.foodStore[food_id]
 
     def GetAll(self):
-        return self.foodStore.values()
+        return list(self.foodStore.values())
 
     def GetBySearchTerm(self, search_term):
         return filter(lambda food: search_term in food.name, self.foodStore.values())
@@ -45,18 +46,15 @@ class FoodRepository:
             self._persist()
 
     def _persist(self):
-        filePath = path.join(Config.DATABASE_FOLDER, "foodStore.json")
-        with open(filePath, "w") as f:
+        with open(self.filePath, "w") as f:
             foodList = list(map(lambda i: i.to_dict(), self.GetAll()))
             json.dump(foodList, f)
 
     def _load(self):
-        filePath = path.join(Config.DATABASE_FOLDER, "foodStore.json")
-
-        if (not(path.exists(filePath))):
+        if (not(path.exists(self.filePath))):
             return
 
-        with open(filePath, "r") as f:
+        with open(self.filePath, "r") as f:
             jsonArray = json.load(f)
             
         self.foodStore = dict((js['id'], Food.fromJson(js)) for js in jsonArray)

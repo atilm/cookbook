@@ -4,7 +4,6 @@ class StoreManager:
     class __StoreManager:
         def __init__(self, config):
             self.config = config
-            print("Store manager setting up: " + self.config.FOOD_REPOSITORY)
             self.foodStore = IndexedStore(self.config.FOOD_REPOSITORY)
             self.recipeStore = IndexedStore(self.config.RECIPE_REPOSITORY)
 

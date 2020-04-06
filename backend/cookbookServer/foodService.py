@@ -1,10 +1,11 @@
 from cookbookServer.foodRepository import FoodRepository
 from cookbookServer.food import Food
+from cookbookServer.config import Config
 import random
 
 class FoodService:
     def __init__(self):
-        self.repository = FoodRepository()
+        self.repository = FoodRepository(Config())
 
     def create(self, jsonData):
         return self.repository.Save(Food.fromJson(jsonData)).to_dict()
