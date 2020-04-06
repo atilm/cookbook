@@ -13,8 +13,7 @@ class TestRecipeRepository(unittest.TestCase):
     def setUp(self):
         if (os.path.exists(self.config.RECIPE_REPOSITORY)):
             os.remove(self.config.RECIPE_REPOSITORY)
-        # cause indexed stores to be rebuilt with reset
-        # index algorithms:
+        # overwrite paths to data files and reset stores
         manager = StoreManager(self.config)
         manager.setConfig(self.config)
 
