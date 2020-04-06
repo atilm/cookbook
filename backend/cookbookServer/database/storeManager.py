@@ -1,4 +1,4 @@
-from cookbookServer.indexedStore import IndexedStore
+from cookbookServer.database.indexedStore import IndexedStore
 
 class StoreManager:
     class __StoreManager:

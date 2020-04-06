@@ -1,6 +1,6 @@
 from cookbookServer.food import Food
 from cookbookServer.config import Config
-from cookbookServer.storeManager import StoreManager
+from cookbookServer.database.storeManager import StoreManager
 from os import path
 import json
 

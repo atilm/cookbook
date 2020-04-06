@@ -1,7 +1,6 @@
 from os import path
 from cookbookServer.recipe import Recipe
-from cookbookServer.storeManager import StoreManager
-from cookbookServer.indexedStore import IndexedStore
+from cookbookServer.database.storeManager import StoreManager
 
 class RecipeRepository:
     def __init__(self, config):
