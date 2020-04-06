@@ -42,12 +42,13 @@ class IndexedStore:
         return self.currentIndex
 
     def _persist(self):
-        filePath = self.filePath
-        with open(filePath, "w") as f:
+        print("Persisting to " + self.filePath)
+        with open(self.filePath, "w") as f:
             array = self.get_all()
             json.dump(array, f)
 
     def _load(self):
+        print("Loading from " + self.filePath)
         if (not(os.path.exists(self.filePath))):
             return []
 

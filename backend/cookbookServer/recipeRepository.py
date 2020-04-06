@@ -13,7 +13,7 @@ class RecipeRepository:
         if recipe.id != None:
             raise Exception("Object to save already has an id.")
 
-        recipeWithId = self.recipeStore.add(recipe)
+        recipeWithId = self.recipeStore.add(recipe.to_dict())
 
         return Recipe.from_dict(recipeWithId)
 
@@ -24,7 +24,7 @@ class RecipeRepository:
         return Recipe.from_dict(self.recipeStore.get(id))
 
     def update(self, recipe):
-        updatedRecipe = self.recipeStore.update(recipe)
+        updatedRecipe = self.recipeStore.update(recipe.to_dict())
 
         return Recipe.from_dict(updatedRecipe)
 

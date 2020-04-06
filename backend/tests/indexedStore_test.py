@@ -1,13 +1,13 @@
 import unittest
 import os
 import json
-from tests.config import Config
+from tests.testConfig import TestConfig
 from cookbookServer.indexedStore import IndexedStore
 
 class TestIndexedStore(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.testFile = os.path.join(Config.DATABASE_FOLDER, "indexed_store_test_repo.json")
+        cls.testFile = os.path.join(TestConfig.DATABASE_FOLDER, "indexed_store_test_repo.json")
 
     def setUp(self):
         if (os.path.exists(self.testFile)):

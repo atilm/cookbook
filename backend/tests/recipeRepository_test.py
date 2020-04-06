@@ -1,17 +1,22 @@
 import unittest
 import os
-from tests.config import Config
+from tests.testConfig import TestConfig
+from cookbookServer.storeManager import StoreManager
 from cookbookServer.recipe import Recipe
 from cookbookServer.recipeRepository import RecipeRepository
 
 class TestRecipeRepository(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.config = Config()
+        cls.config = TestConfig()
 
     def setUp(self):
         if (os.path.exists(self.config.RECIPE_REPOSITORY)):
             os.remove(self.config.RECIPE_REPOSITORY)
+        # cause indexed stores to be rebuilt with reset
+        # index algorithms:
+        manager = StoreManager(self.config)
+        manager.setConfig(self.config)
 
     def test_save_and_get_all(self):
         saveRepo = RecipeRepository(self.config)
