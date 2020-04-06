@@ -7,7 +7,7 @@ class Food:
         self.seasonMonths = seasonMonths
 
     @classmethod
-    def fromJson(cls, js):
+    def from_dict(cls, js):
         name = js['name']
         kcal = js['kcal']
         seasonMonths = []

@@ -10,9 +10,6 @@ class RecipeRepository:
         self.recipeStore = self.storeManager.instance.recipeStore
 
     def save(self, recipe):
-        if recipe.id != None:
-            raise Exception("Object to save already has an id.")
-
         recipeWithId = self.recipeStore.add(recipe.to_dict())
 
         return Recipe.from_dict(recipeWithId)

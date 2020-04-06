@@ -1,70 +1,39 @@
 from cookbookServer.food import Food
 from cookbookServer.config import Config
+from cookbookServer.storeManager import StoreManager
 from os import path
 import json
 
 class FoodRepository:
     def __init__(self, config):
-        self.foodStore = {}
-        self.currentId = 0
-        self.filePath = config.FOOD_REPOSITORY
-        self._load()
+        self.config = config
+        self.storeManager = StoreManager(self.config)
+        self.foodStore = self.storeManager.instance.foodStore
 
     def Save(self, food):
-        newId = self._nextId()
-        self.foodStore[newId] = food
-        food.id = newId
-        self._persist()
-        return food
+        foodWithId = self.foodStore.add(food.to_dict())
+
+        return Food.from_dict(foodWithId)
     
     def Update(self, food):
-        if food.id == None:
-            raise Exception("Object to update has no id.")
+        updatedFood = self.foodStore.update(food.to_dict())
 
-        if not (food.id in self.foodStore):
-            raise Exception("Object id to update does not exist.")
-
-        self.foodStore[food.id] = food
-        self._persist()
-        return self.foodStore[food.id]
+        return Food.from_dict(updatedFood)
 
     def GetAll(self):
-        return list(self.foodStore.values())
+        return self.__to_food_array(self.foodStore.get_all())
 
     def GetBySearchTerm(self, search_term):
-        return filter(lambda food: search_term in food.name, self.foodStore.values())
+        return filter(lambda food: search_term in food.name, self.GetAll())
 
     def GetById(self, id):
-        if not(id in self.foodStore):
-            return Food(None, None, [])
-
-        return self.foodStore[id]
+        return Food.from_dict(self.foodStore.get(id))
 
     def Delete(self, id):
-        if not(id in self.foodStore):
-            raise Exception("Given id does not exist")
-        
-        del self.foodStore[id]
-        self._persist()
+        self.foodStore.remove(id)
 
-    def _persist(self):
-        with open(self.filePath, "w") as f:
-            foodList = list(map(lambda i: i.to_dict(), self.GetAll()))
-            json.dump(foodList, f)
-
-    def _load(self):
-        if (not(path.exists(self.filePath))):
-            return
-
-        with open(self.filePath, "r") as f:
-            jsonArray = json.load(f)
-            
-        self.foodStore = dict((js['id'], Food.fromJson(js)) for js in jsonArray)
-        self.currentId = max(self.foodStore.keys())
-
-    def _nextId(self):
-        self.currentId += 1
-        return self.currentId
+    def __to_food_array(self, jsonArray):
+        return [Food.from_dict(json) for json in jsonArray]
         
 
 

@@ -10,6 +10,9 @@ class IndexedStore:
         self._load()
 
     def add(self, object):
+        if object["id"] != None:
+            raise Exception("Object to save already has an id.")
+
         object["id"] = self._next_index()
         self.objectDictionary[object["id"]] = object
         self._persist()
