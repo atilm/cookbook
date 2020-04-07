@@ -37,13 +37,10 @@ class FoodRepository:
         return Food.from_dict(self.foodStore.get(id))
 
     def Delete(self, id):
+        if self.__is_used_as_ingredient(id):
+            raise Exception("The food cannot be deleted, becuase it is in use.")
+
         self.foodStore.remove(id)
-
-    def __to_food_array(self, jsonArray):
-        return [Food.from_dict(json) for json in jsonArray]
-
-    def __to_recipe_array(self, jsonArray):
-        return [Recipe.from_dict(json) for json in jsonArray]
 
     def __update_food_name_in_recipes(self, food):
         allRecipes = self.__to_recipe_array(self.recipeStore.get_all())
@@ -52,6 +49,22 @@ class FoodRepository:
             for ingredient in recipe.ingredients:
                 if ingredient["food"]["id"] == food.id:
                     ingredient["food"]["name"] = food.name
+
+    def __is_used_as_ingredient(self, id):
+        allRecipes = self.__to_recipe_array(self.recipeStore.get_all())
+
+        for recipe in allRecipes:
+            usages = list(filter(lambda i: i["food"]["id"] == id, recipe.ingredients))
+            if len(usages) > 0:
+                return True
+        
+        return False
+
+    def __to_food_array(self, jsonArray):
+        return [Food.from_dict(json) for json in jsonArray]
+
+    def __to_recipe_array(self, jsonArray):
+        return [Recipe.from_dict(json) for json in jsonArray]
         
 
 
