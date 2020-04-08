@@ -6,7 +6,7 @@
                 <legend>Edit Recipe</legend>
                 <div class="form-group">
                     <label for="recipeName">Name</label>
-                    <input type="text" class="form-control" id="recipeName" v-model="currentRecipe.name" />
+                    <input type="text" class="form-control" id="recipeName" ref="recipeNameInput" v-model="currentRecipe.name" />
                 </div>
                 <div class="form-group">
                     <label for="tagsSelect">Tags</label>
@@ -17,8 +17,9 @@
                     <input type="number" class="form-control" id="persons" v-model="currentRecipe.numberOfPeople" />
                 </div>
                 <label for="ingredientForm">Zutaten</label>
+                <button @click="loadAvailableFood" class="btn btn-secondary btn-sm">Update food list</button>
                 <div class="form-inline" id="ingredientForm" v-for="(ingredient, index) in currentRecipe.ingredients" :key="ingredient.food_id">
-                    <input type="number" class="form-control" v-model="ingredient.amount" />
+                    <input v-focus type="number" class="form-control amount-input" v-model="ingredient.amount" />
                     <vue-select :options="availableUnits" v-model="ingredient.unit" />
                     <vue-select :options="availableFood" label="name" v-model="ingredient.food" />
                     <button class="btn btn-secondary btn-sm" @click="removeIngredient(index)">Remove</button>
@@ -26,7 +27,7 @@
                 <button @click="addIngredient" class="btn btn-secondary btn-sm">Add</button>
                 <div class="form-group">
                     <label for="instructions">Zubereitung</label>
-                    <textarea class="form-control" id="instructions" v-model="currentRecipe.instructions" />
+                    <textarea class="form-control instructions-input" id="instructions" v-model="currentRecipe.instructions" />
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
@@ -61,12 +62,21 @@ export default {
         this.tagService = new TagService();
         this.loadAvailableTags();
     },
+    directives: {
+        focus: {
+            inserted: function (el) {
+                el.focus()
+            }
+        }
+    },
     methods: {
         loadRecipe: function(id) {
             let vm = this;
             
-            if (id === null)
+            if (id === null) {
                 this.currentRecipe = new Recipe();
+                this.addIngredient();
+            }
             else
                 this.service.get(id).then(recipe => this.currentRecipe = recipe);
         },
@@ -101,5 +111,11 @@ export default {
 </script>
 
 <style scoped>
+    .amount-input {
+        width: 100px;
+    }
 
+    .instructions-input {
+        height: 250px;
+    }
 </style>
