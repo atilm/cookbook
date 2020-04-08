@@ -22,6 +22,12 @@
                         </div>
                     </fieldset>
                 </form>
+                <div v-if="lastSaved.id" class="alert alert-primary" role="alert">
+                    Saved food {{lastSaved.name}}.
+                    <button type="button" class="close" @click="dismissNotification" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -35,7 +41,9 @@ export default {
     name: "edit-food-view",
     data() {
         return {
-            currentFood: new Food()
+            lastSaved: new Food(),
+            currentFood: new Food(),
+            dismissCountDown: 0
         }
     },
     mounted() {
@@ -44,10 +52,14 @@ export default {
     },
     methods: {
         saveFood: function() {
-            if (this.currentFood.id === null)
-                this.foodService.create(this.currentFood);
-            else
-                this.foodService.update(this.currentFood);
+            if (this.currentFood.id === null) {
+                this.foodService.create(this.currentFood)
+                .then(food => this.lastSaved = food);
+            }
+            else {
+                this.foodService.update(this.currentFood)
+                .then(food => this.lastSaved = food);
+            }
 
             this.$refs.fooodnameref.focus();
         },
@@ -59,6 +71,9 @@ export default {
             }
             else
                 this.foodService.get(id).then(food => this.currentFood = food);
+        },
+        dismissNotification: function() {
+            this.lastSaved = new Food();
         }
     }
 }

@@ -19,7 +19,7 @@ Vue.component('month-chooser', MonthChooser);
 const routes = [
   { path: '/', redirect: '/randomFood' },
   { path: '/food/:id/edit', name: 'editFood', component: EditFoodView },
-  { path: '/foodAdmin', component: FoodAdminView },
+  { path: '/foodAdmin', component: ListFoodView },
   { path: '/randomFood', component: RandomFoodView },
   { path: '/recipeList', component: RecipeListView},
   { path: '/recipe/:id/details', name: 'recipeDetails', component: RecipeDetailsView},
