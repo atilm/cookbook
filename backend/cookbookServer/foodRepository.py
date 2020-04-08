@@ -47,14 +47,14 @@ class FoodRepository:
 
         for recipe in allRecipes:
             for ingredient in recipe.ingredients:
-                if ingredient["food"]["id"] == food.id:
+                if ingredient["food"] != None and ingredient["food"]["id"] == food.id:
                     ingredient["food"]["name"] = food.name
 
     def __is_used_as_ingredient(self, id):
         allRecipes = self.__to_recipe_array(self.recipeStore.get_all())
 
         for recipe in allRecipes:
-            usages = list(filter(lambda i: i["food"]["id"] == id, recipe.ingredients))
+            usages = list(filter(lambda i: i["food"] != None and i["food"]["id"] == id, recipe.ingredients))
             if len(usages) > 0:
                 return True
         

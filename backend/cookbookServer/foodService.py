@@ -8,7 +8,7 @@ class FoodService:
         self.repository = FoodRepository(Config())
 
     def create(self, jsonData):
-        return self.repository.Save(Food.fromJson(jsonData)).to_dict()
+        return self.repository.Save(Food.from_dict(jsonData)).to_dict()
 
     def get_all(self):
         return list(map(lambda i: i.to_dict(), self.repository.GetAll()))
@@ -25,7 +25,7 @@ class FoodService:
         return list(map(lambda i: i.to_dict(), items))
 
     def update(self, food_id, jsonData):
-        return self.repository.Update(Food.fromJson(jsonData)).to_dict()
+        return self.repository.Update(Food.from_dict(jsonData)).to_dict()
 
     def delete(self, id):
         self.repository.Delete(id)
