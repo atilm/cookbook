@@ -1,7 +1,5 @@
 <template>
-    <div id="foodList">
-        <update-food-form :food="foodToUpdate" />
-        
+    <div id="foodList">      
         <h2>List of food <button class="btn btn-dark btn-sm" @click="updateList">Refresh</button></h2>
         <form @submit.prevent="searchFood" class="form-inline">
             <div class="form-group">
@@ -15,10 +13,9 @@
         <table class="table">
             <tbody>
                 <tr  v-for="(food) in foodItems" :key="food.id">
-                    <td>{{food.name}}</td>
+                    <td><router-link :to="{ name: 'editFood', params: { id: food.id }}">{{food.name}}</router-link></td>
                     <td>({{food.kcal}} kcal)</td>
                     <td><div v-html="monthString(food)"/></td>
-                    <td><Button @click="editFood(food)" class="btn btn-primary btn-sm">Edit</Button></td>
                     <td><Button @click="deleteFood(food.id)" class="btn btn-secondary btn-sm">Delete</Button></td>
                 </tr>
             </tbody>

@@ -48,7 +48,7 @@ export default {
         return {
             currentRecipe: new Recipe(),
             availableTags: [],
-            availableUnits: ["g", "ml", "El", "Tl", "Stück"],
+            availableUnits: ["g", "ml", "El", "Tl", "Stück", "Prise"],
             availableFood: []
         }
     },

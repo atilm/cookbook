@@ -1,0 +1,19 @@
+Tasks
+=====
+Zutatenliste in Recipes als Tabelle
+Dezimalbrüche als amount zulassen
+Rückmeldung bei save von Food und Recipe
+Ist die Art Create auszulösen so OK?
+Navbar active aktualisieren
+Suche nach Recipes
+Sieben zufällige Recipes
+Schickere season months components für Edit und Anzeige
+Einkaufsliste erstellen
+Rezept auf Karteikarte drucken
+
+Themen
+======
+Error-Handling
+Deployment / Zugriff im Heimnetz
+Authentifizierung
+Lokalisierung

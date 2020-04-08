@@ -3,9 +3,8 @@ import VueRouter from 'vue-router';
 import VueSelect from 'vue-select';
 import App from './App.vue';
 import FoodList from './components/FoodList.vue';
-import AddFoodForm from './components/AddFoodForm.vue';
-import UpdateFoodForm from './components/UpdateFoodForm.vue';
 import MonthChooser from './components/MonthChooser.vue';
+import EditFoodView from './views/EditFoodView.vue';
 import FoodAdminView from './views/FoodAdminView.vue';
 import RandomFoodView from './views/RandomFoodView.vue';
 import RecipeListView from './views/ListRecipesView.vue';
@@ -17,12 +16,11 @@ Vue.use(VueRouter);
 
 Vue.component('vue-select', VueSelect);
 Vue.component('food-list', FoodList);
-Vue.component('add-food-form', AddFoodForm);
-Vue.component('update-food-form', UpdateFoodForm);
 Vue.component('month-chooser', MonthChooser);
 
 const routes = [
   { path: '/', redirect: '/randomFood' },
+  { path: '/food/:id/edit', name: 'editFood', component: EditFoodView },
   { path: '/foodAdmin', component: FoodAdminView },
   { path: '/randomFood', component: RandomFoodView },
   { path: '/recipeList', component: RecipeListView},
