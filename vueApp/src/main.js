@@ -2,10 +2,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueSelect from 'vue-select';
 import App from './App.vue';
-import FoodList from './components/FoodList.vue';
 import MonthChooser from './components/MonthChooser.vue';
 import EditFoodView from './views/EditFoodView.vue';
-import FoodAdminView from './views/FoodAdminView.vue';
+import ListFoodView from './views/ListFoodView.vue';
 import RandomFoodView from './views/RandomFoodView.vue';
 import RecipeListView from './views/ListRecipesView.vue';
 import RecipeDetailsView from './views/RecipeDetailsView.vue';
@@ -15,7 +14,6 @@ import 'vue-select/dist/vue-select.css';
 Vue.use(VueRouter);
 
 Vue.component('vue-select', VueSelect);
-Vue.component('food-list', FoodList);
 Vue.component('month-chooser', MonthChooser);
 
 const routes = [

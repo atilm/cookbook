@@ -48,6 +48,8 @@ export default {
                 this.foodService.create(this.currentFood);
             else
                 this.foodService.update(this.currentFood);
+
+            this.$refs.fooodnameref.focus();
         },
         loadFood: function(id) {
             let vm = this;
