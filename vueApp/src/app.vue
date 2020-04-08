@@ -15,7 +15,7 @@
               <router-link class="nav-link" :to="{ name: 'editRecipe', params: { id: null }}">Create Recipe</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'editFood', params: { id: null }}">Create Food</router-link>
+              <router-link class="nav-link" to="/food/create">Create Food</router-link>
             </li>
             <li class="nav-item active">
               <router-link class="nav-link" to="/foodAdmin">Search Food</router-link>

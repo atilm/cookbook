@@ -48,7 +48,8 @@ export default {
     },
     mounted() {
         this.foodService = new FoodService();
-        this.loadFood(this.$route.params.id);
+        if ("id" in this.$route.params)
+            this.loadFood(this.$route.params.id);
     },
     methods: {
         saveFood: function() {
