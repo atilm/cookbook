@@ -20,4 +20,8 @@ export default class RecipeService {
     update(recipe) {
         return this.apiService.update(recipe);
     }
+
+    delete(id) {
+        this.apiService.delete(id);
+    }
 };

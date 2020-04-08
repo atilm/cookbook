@@ -8,6 +8,7 @@
                     <tr  v-for="(recipe) in recipeItems" :key="recipe.id">
                         <td><router-link :to="{ name: 'recipeDetails', params: { id: recipe.id }}">{{recipe.name}}</router-link></td>
                         <td>{{getTagsString(recipe)}}</td>
+                        <td><button class="btn btn-secondary btn-sm" @click="deleteRecipe(recipe.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -46,6 +47,10 @@ export default {
             }
 
             return resultString;
+        },
+        deleteRecipe: function(id) {
+            this.service.delete(id);
+            this.updateList();
         }
     }
 }
