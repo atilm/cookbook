@@ -9,10 +9,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <router-link to="/foodAdmin">Food Admin Page</router-link>
-              <router-link to="/randomFood">Five random foods</router-link>
-              <router-link to="/recipeList">Recipes</router-link>
-              <router-link :to="{ name: 'editRecipe', params: { id: null }}">Create Recipe</router-link>
+              <router-link class="nav-link" to="/foodAdmin">Food Admin Page</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/randomFood">Five random foods</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/recipeList">Recipes</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'editRecipe', params: { id: null }}">Create Recipe</router-link>
             </li>
           </ul>
         </div>
