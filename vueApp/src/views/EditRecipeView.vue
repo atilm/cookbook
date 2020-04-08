@@ -30,7 +30,13 @@
                     <textarea class="form-control instructions-input" id="instructions" v-model="currentRecipe.instructions" />
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
-            </form>
+                </form>
+                <div v-if="lastSaved.id" class="alert alert-primary" role="alert">
+                    Saved recipe {{lastSaved.name}}.
+                    <button type="button" class="close" @click="dismissNotification" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -47,6 +53,7 @@ export default {
     data() {
         return {
             currentRecipe: new Recipe(),
+            lastSaved: new Recipe(),
             availableTags: [],
             availableUnits: ["g", "ml", "El", "Tl", "Stück", "Prise"],
             availableFood: []
@@ -105,6 +112,9 @@ export default {
                 this.service.create(this.currentRecipe);
             else
                 this.service.update(this.currentRecipe);
+        },
+        dismissNotification: function() {
+            this.lastSaved = new Recipe();
         }
     }
 }

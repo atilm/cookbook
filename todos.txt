@@ -1,9 +1,8 @@
 Tasks
 =====
+Ist die Art Create auszulösen so OK?
 Zutatenliste in Recipes als Tabelle
 Dezimalbrüche als amount zulassen
-Rückmeldung bei save von Food und Recipe
-Ist die Art Create auszulösen so OK?
 Navbar active aktualisieren
 Suche nach Recipes
 Sieben zufällige Recipes
