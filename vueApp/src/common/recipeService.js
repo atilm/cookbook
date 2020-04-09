@@ -9,6 +9,10 @@ export default class RecipeService {
         return this.apiService.getAll();
     }
 
+    get_by_search_term(searchTerm) {
+        return this.apiService.getBySearchTerm(searchTerm);
+    }
+
     get(id) {
         return this.apiService.get(id);
     }

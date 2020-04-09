@@ -3,6 +3,14 @@
     <div class="row">
         <div class="col">
             <h1>Recipes</h1>
+            <form @submit.prevent="searchRecipes" class="form-inline mb-2">
+                <div class="form-group">
+                    <input type="text" class="form-control" v-model="searchTerm"/>
+                </div>
+                <div class="form-group">
+                    <Button type="submit" class="btn btn-primary ml-2">Search</Button>
+                </div>
+            </form>
             <table class="table">
                 <tbody>
                     <tr  v-for="(recipe) in recipeItems" :key="recipe.id">
@@ -24,7 +32,8 @@ export default {
     name: 'list-recipes-view',
     data() {
         return {
-            recipeItems: []
+            recipeItems: [],
+            searchTerm: ""
         }
     },
     mounted() {
@@ -35,6 +44,11 @@ export default {
         updateList: function() {
             let vm = this;
             this.service.get_all().then(items => this.recipeItems = items );
+        },
+        searchRecipes: function() {
+            let vm = this;
+            this.service.get_by_search_term(this.searchTerm)
+                .then(items => this.recipeItems = items);
         },
         getTagsString: function(recipe) {
             let resultString = "";

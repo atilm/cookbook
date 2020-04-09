@@ -52,7 +52,6 @@ export default {
             this.foodService.getAll().then(items => this.foodItems = items);
         },
         searchFood: function(){
-            console.log("search for" + this.searchTerm)
             let vm = this;
             this.foodService.getBySearchTerm(this.searchTerm)
                 .then(items => this.foodItems = items);

@@ -37,7 +37,7 @@ class RecipeRepository:
             return True
 
         for ingredient in recipe.ingredients:
-            if lower_term in ingredient["food"]["name"].lower():
+            if ingredient["food"] != None and lower_term in ingredient["food"]["name"].lower():
                 return True
 
     def __to_Recipes(self, jsonArray):
