@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Food List</a>
+        <a class="navbar-brand" href="#">Cookbook</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,12 +12,12 @@
               <router-link class="nav-link" to="/recipeList">Search Recipes</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'editRecipe', params: { id: null }}">Create Recipe</router-link>
+              <router-link class="nav-link" to="/recipe/create">Create Recipe</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/food/create">Create Food</router-link>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <router-link class="nav-link" to="/foodAdmin">Search Food</router-link>
             </li>
             <li class="nav-item">

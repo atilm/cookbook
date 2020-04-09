@@ -1,7 +1,6 @@
 Tasks
 =====
 Zutatenliste in Recipes als Tabelle
-Navbar active aktualisieren
 Suche nach Recipes
 Sieben zufällige Recipes
 Backend endpoint für units

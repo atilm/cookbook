@@ -17,14 +17,15 @@ Vue.component('vue-select', VueSelect);
 Vue.component('month-chooser', MonthChooser);
 
 const routes = [
-  { path: '/', redirect: '/randomFood' },
+  { path: '/', redirect: '/recipeList' },
   { path: '/food/:id/edit', name: 'editFood', component: EditFoodView },
   { path: '/food/create', component: EditFoodView },
   { path: '/foodAdmin', component: ListFoodView },
   { path: '/randomFood', component: RandomFoodView },
   { path: '/recipeList', component: RecipeListView},
   { path: '/recipe/:id/details', name: 'recipeDetails', component: RecipeDetailsView},
-  { path: '/recipe/:id/edit', name: 'editRecipe', component: EditRecipeView}
+  { path: '/recipe/:id/edit', name: 'editRecipe', component: EditRecipeView},
+  { path: '/recipe/create', component: EditRecipeView},
 ]
 
 const router = new VueRouter({

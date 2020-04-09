@@ -18,13 +18,13 @@
                 </div>
                 <label for="ingredientForm">Zutaten</label>
                 <button type="button" @click="loadAvailableFood" class="btn btn-secondary btn-sm">Update food list</button>
-                <div class="form-inline" id="ingredientForm" v-for="(ingredient, index) in currentRecipe.ingredients" :key="ingredient.food_id">
-                    <input v-focus type="number" step=".01" class="form-control amount-input mt-2" v-model="ingredient.amount" />
+                <div class="form-inline mb-2" id="ingredientForm" v-for="(ingredient, index) in currentRecipe.ingredients" :key="ingredient.food_id">
+                    <input v-focus type="number" step=".01" class="form-control amount-input mt-1" v-model="ingredient.amount" />
                     <vue-select class="ml-2" :options="availableUnits" v-model="ingredient.unit" />
                     <vue-select class="ml-2" :options="availableFood" label="name" v-model="ingredient.food" />
                     <button  type="button" class="btn btn-secondary btn-sm ml-1" @click="removeIngredient(index)">Remove</button>
                 </div>
-                <button  type="button" @click="addIngredient" class="btn btn-secondary btn-sm mt-2">Add</button>
+                <button  type="button" @click="addIngredient" class="btn btn-secondary btn-sm">Add</button>
                 <div class="form-group">
                     <label for="instructions">Zubereitung</label>
                     <textarea class="form-control instructions-input" id="instructions" v-model="currentRecipe.instructions" />
@@ -61,7 +61,8 @@ export default {
     },
     mounted() {
         this.service = new RecipeService();
-        this.loadRecipe(this.$route.params.id);
+        if ("id" in this.$route.params)
+            this.loadRecipe(this.$route.params.id);
 
         this.foodService = new FoodService();
         this.loadAvailableFood();
