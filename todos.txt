@@ -1,18 +1,22 @@
 Tasks
 =====
-Ist die Art Create auszulösen so OK?
+Funktioniert die Erfolgsanzeige beim Recipe-Speichern?
 Zutatenliste in Recipes als Tabelle
+Abstände bei Inputs einführen
 Dezimalbrüche als amount zulassen
 Navbar active aktualisieren
 Suche nach Recipes
 Sieben zufällige Recipes
+Backend endpoint für units
 Schickere season months components für Edit und Anzeige
 Einkaufsliste erstellen
+Units ineinander umrechnen
 Rezept auf Karteikarte drucken
 
 Themen
 ======
 Error-Handling
 Deployment / Zugriff im Heimnetz
+Sicherheit: https, Netzwerkkonfiguration, checks für Eingangsdaten
 Authentifizierung
 Lokalisierung

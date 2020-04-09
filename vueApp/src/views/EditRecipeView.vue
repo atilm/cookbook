@@ -17,14 +17,14 @@
                     <input type="number" class="form-control" id="persons" v-model="currentRecipe.numberOfPeople" />
                 </div>
                 <label for="ingredientForm">Zutaten</label>
-                <button @click="loadAvailableFood" class="btn btn-secondary btn-sm">Update food list</button>
+                <button type="button" @click="loadAvailableFood" class="btn btn-secondary btn-sm">Update food list</button>
                 <div class="form-inline" id="ingredientForm" v-for="(ingredient, index) in currentRecipe.ingredients" :key="ingredient.food_id">
-                    <input v-focus type="number" class="form-control amount-input" v-model="ingredient.amount" />
+                    <input v-focus type="number" step=".01" class="form-control amount-input" v-model="ingredient.amount" />
                     <vue-select :options="availableUnits" v-model="ingredient.unit" />
                     <vue-select :options="availableFood" label="name" v-model="ingredient.food" />
-                    <button class="btn btn-secondary btn-sm" @click="removeIngredient(index)">Remove</button>
+                    <button  type="button" class="btn btn-secondary btn-sm" @click="removeIngredient(index)">Remove</button>
                 </div>
-                <button @click="addIngredient" class="btn btn-secondary btn-sm">Add</button>
+                <button  type="button" @click="addIngredient" class="btn btn-secondary btn-sm">Add</button>
                 <div class="form-group">
                     <label for="instructions">Zubereitung</label>
                     <textarea class="form-control instructions-input" id="instructions" v-model="currentRecipe.instructions" />
@@ -109,9 +109,9 @@ export default {
         },
         saveChanges: function() {
             if (this.currentRecipe.id === null)
-                this.service.create(this.currentRecipe);
+                this.service.create(this.currentRecipe).then(recipe => this.lastSaved = this.currentRecipe = recipe);
             else
-                this.service.update(this.currentRecipe);
+                this.service.update(this.currentRecipe).then(recipe => this.lastSaved = recipe);
         },
         dismissNotification: function() {
             this.lastSaved = new Recipe();
