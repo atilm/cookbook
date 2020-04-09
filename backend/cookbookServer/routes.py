@@ -91,7 +91,10 @@ def delete_recipe(recipe_id):
 
 @app.route('/api/recipe', methods=['GET'])
 def get_all_recipes():
-    return jsonify(recipeService.get_all())
+    if "searchTerm" in request.args:
+        return jsonify(recipeService.get_by_search_term(request.args["searchTerm"]))
+    else:
+        return jsonify(recipeService.get_all())
 
 @app.route('/api/recipe/<int:recipe_id>', methods=['GET'])
 def get_recipe(recipe_id):
