@@ -1,11 +1,11 @@
 Tasks
 =====
-Zutatenliste in Recipes als Tabelle
 Suche nach Recipes
 Sieben zufällige Recipes
 Backend endpoint für units
 Schickere season months components für Edit und Anzeige
 Einkaufsliste erstellen
+Ingredient-Gruppen / Rezepte als Ingredients
 Units ineinander umrechnen
 Rezept auf Karteikarte drucken
 

@@ -5,11 +5,14 @@
                 <h1>{{currentRecipe.name}}</h1>
                 <router-link :to="{ name: 'editRecipe', params: { id: currentRecipe.id }}" tag="button" class="btn btn-primary btn-sm">Edit</router-link>
                 <p>Für {{currentRecipe.numberOfPeople}} Personen</p>
-                <ul>
-                    <li v-for="ingredient in currentRecipe.ingredients" :key="ingredient.food.id">
-                        {{ingredient.amount}} {{ingredient.unit}} {{ingredient.food.name}}
-                    </li>
-                </ul>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr  v-for="(ingredient, index) in currentRecipe.ingredients" :key="index">
+                            <td>{{ingredient.amount}} {{ingredient.unit}} </td>
+                            <td>{{ingredient.food.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <p>{{currentRecipe.instructions}}</p>
             </div>
         </div>
