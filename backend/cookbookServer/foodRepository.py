@@ -31,7 +31,7 @@ class FoodRepository:
         return self.__to_food_array(self.foodStore.get_all())
 
     def GetBySearchTerm(self, search_term):
-        return filter(lambda food: search_term in food.name, self.GetAll())
+        return list(filter(lambda food: search_term in food.name, self.GetAll()))
 
     def GetById(self, id):
         return Food.from_dict(self.foodStore.get(id))
