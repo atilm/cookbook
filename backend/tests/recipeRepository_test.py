@@ -59,6 +59,20 @@ class TestRecipeRepository(unittest.TestCase):
 
         self._assert_recipes_equal(loadRepo.get(returnedRecipeOne.id), returnedRecipeOne)
 
+    def test_get_by_search_term(self):
+        recipe1 = self.__create_recipe(name="Auberginenschnitzel", ingredients=["Aubergine", "Ei", "Mehl"])
+        recipe2 = self.__create_recipe(name="Der Imam fällt in ohnmacht", ingredients=["auberginen", "Zucchini", "Feta", "Tomate"])
+        recipe3 = self.__create_recipe(name="Should not be found", ingredients=["Butter", "Zucker"], tags=["ohne Aubergine"])
+
+        repo = RecipeRepository(self.config)
+        repo.save(recipe1)
+        repo.save(recipe2)
+        repo.save(recipe3)
+
+        results = repo.get_by_search_term("aubergine")
+
+        self.assertEqual(len(results), 2)
+
     def test_update(self):
         saveRepo = RecipeRepository(self.config)
         recipeOne = self._create_default_recipe()
@@ -116,6 +130,18 @@ class TestRecipeRepository(unittest.TestCase):
         recipe.tags = ["Main course", "vegetarian"]
         recipe.add_ingredient(1, "Rice", 200, "g")
         recipe.add_ingredient(2, "Water", 150, "ml")
+        recipe.instructions = "Cook it."
+        return recipe
+
+    def __create_recipe(self, name = "The recipe name", ingredients = [], tags = []):
+        recipe = Recipe()
+        recipe.name = name
+        recipe.numberOfPeople = 4
+        recipe.tags = tags
+
+        for index, ingredient in enumerate(ingredients):
+            recipe.add_ingredient(index, ingredient, 100 + index, "g")
+
         recipe.instructions = "Cook it."
         return recipe
 

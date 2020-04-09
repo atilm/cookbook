@@ -19,6 +19,9 @@ class RecipeRepository:
     def get(self, id):
         return Recipe.from_dict(self.recipeStore.get(id))
 
+    def get_by_search_term(self, searchTerm):
+        return []
+
     def update(self, recipe):
         updatedRecipe = self.recipeStore.update(recipe.to_dict())
 
