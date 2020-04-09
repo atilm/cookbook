@@ -19,19 +19,19 @@
                 <label for="ingredientForm">Zutaten</label>
                 <button type="button" @click="loadAvailableFood" class="btn btn-secondary btn-sm">Update food list</button>
                 <div class="form-inline" id="ingredientForm" v-for="(ingredient, index) in currentRecipe.ingredients" :key="ingredient.food_id">
-                    <input v-focus type="number" step=".01" class="form-control amount-input" v-model="ingredient.amount" />
-                    <vue-select :options="availableUnits" v-model="ingredient.unit" />
-                    <vue-select :options="availableFood" label="name" v-model="ingredient.food" />
-                    <button  type="button" class="btn btn-secondary btn-sm" @click="removeIngredient(index)">Remove</button>
+                    <input v-focus type="number" step=".01" class="form-control amount-input mt-2" v-model="ingredient.amount" />
+                    <vue-select class="ml-2" :options="availableUnits" v-model="ingredient.unit" />
+                    <vue-select class="ml-2" :options="availableFood" label="name" v-model="ingredient.food" />
+                    <button  type="button" class="btn btn-secondary btn-sm ml-1" @click="removeIngredient(index)">Remove</button>
                 </div>
-                <button  type="button" @click="addIngredient" class="btn btn-secondary btn-sm">Add</button>
+                <button  type="button" @click="addIngredient" class="btn btn-secondary btn-sm mt-2">Add</button>
                 <div class="form-group">
                     <label for="instructions">Zubereitung</label>
                     <textarea class="form-control instructions-input" id="instructions" v-model="currentRecipe.instructions" />
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
                 </form>
-                <div v-if="lastSaved.id" class="alert alert-primary" role="alert">
+                <div v-if="lastSaved.id" class="alert alert-primary mt-2" role="alert">
                     Saved recipe {{lastSaved.name}}.
                     <button type="button" class="close" @click="dismissNotification" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

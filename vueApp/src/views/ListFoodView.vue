@@ -3,12 +3,12 @@
       <div class="row">
         <div class="col">   
           <h2>List of food <button class="btn btn-dark btn-sm" @click="updateList">Refresh</button></h2>
-          <form @submit.prevent="searchFood" class="form-inline">
+          <form @submit.prevent="searchFood" class="form-inline mb-2">
               <div class="form-group">
                   <input type="text" class="form-control" v-model="searchTerm"/>
               </div>
               <div class="form-group">
-                  <Button type="submit" class="btn btn-primary">Search</Button>
+                  <Button type="submit" class="btn btn-primary ml-2">Search</Button>
               </div>
           </form>
         </div>

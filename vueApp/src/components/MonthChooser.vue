@@ -2,9 +2,9 @@
     <form class="form-inline">
         <div v-for="month in allMonths" :key="month" class="form-group">
             <label>{{month}}</label><br/>
-            <input type="checkbox" :id="month" :value="month" v-model="checkedMonths" v-on:change="$emit('input', checkedMonths)">
+            <input class="mr-1" type="checkbox" :id="month" :value="month" v-model="checkedMonths" v-on:change="$emit('input', checkedMonths)">
         </div>
-        <button class="btn-secondary btn-sm" @click.prevent="uncheckAll">Uncheck all</button>
+        <button class="btn-secondary btn-sm ml-1" @click.prevent="uncheckAll">Uncheck all</button>
     </form>
 </template>
 

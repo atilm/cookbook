@@ -1,9 +1,6 @@
 Tasks
 =====
-Funktioniert die Erfolgsanzeige beim Recipe-Speichern?
 Zutatenliste in Recipes als Tabelle
-Abstände bei Inputs einführen
-Dezimalbrüche als amount zulassen
 Navbar active aktualisieren
 Suche nach Recipes
 Sieben zufällige Recipes
