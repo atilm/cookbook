@@ -17,6 +17,10 @@ export default class RecipeService {
         return this.apiService.get(id);
     }
 
+    getRandomlyChosen(number) {
+        return this.apiService.getRandomlyChosen(number);
+    }
+
     create(recipe) {
         return this.apiService.create(recipe);
     }

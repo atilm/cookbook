@@ -1,12 +1,16 @@
 Tasks
 =====
-Sieben zufällige Recipes
+Zufällige Auswahl ohne Dopplungen (& Blacklist) implementieren
+Zufällige Rezeptauswahl nur von Hauptgerichten implementieren
+Suchen nach Tags filtern
 Backend endpoint für units
 Schickere season months components für Edit und Anzeige
 Einkaufsliste erstellen
 Ingredient-Gruppen / Rezepte als Ingredients
 Units ineinander umrechnen
 Rezept auf Karteikarte drucken
+Kalorien eines Rezepts ausrechnen
+Rezept auf bestimmte Energiemenge skalieren
 
 Themen
 ======

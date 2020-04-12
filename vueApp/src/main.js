@@ -9,6 +9,7 @@ import RandomFoodView from './views/RandomFoodView.vue';
 import RecipeListView from './views/ListRecipesView.vue';
 import RecipeDetailsView from './views/RecipeDetailsView.vue';
 import EditRecipeView from './views/EditRecipeView.vue';
+import RandomRecipesView from './views/RandomRecipesView.vue';
 import 'vue-select/dist/vue-select.css';
 
 Vue.use(VueRouter);
@@ -22,10 +23,11 @@ const routes = [
   { path: '/food/create', component: EditFoodView },
   { path: '/foodAdmin', component: ListFoodView },
   { path: '/randomFood', component: RandomFoodView },
-  { path: '/recipeList', component: RecipeListView},
-  { path: '/recipe/:id/details', name: 'recipeDetails', component: RecipeDetailsView},
-  { path: '/recipe/:id/edit', name: 'editRecipe', component: EditRecipeView},
-  { path: '/recipe/create', component: EditRecipeView},
+  { path: '/recipeList', component: RecipeListView },
+  { path: '/recipe/:id/details', name: 'recipeDetails', component: RecipeDetailsView },
+  { path: '/recipe/:id/edit', name: 'editRecipe', component: EditRecipeView },
+  { path: '/recipe/create', component: EditRecipeView },
+  { path: '/randomRecipes', component: RandomRecipesView }
 ]
 
 const router = new VueRouter({

@@ -103,6 +103,15 @@ def get_recipe(recipe_id):
         abort(404)
     return jsonify(recipe)
 
+@app.route('/api/recipe/random', methods=['GET'])
+def get_random_recipes():
+    requestedNumber = 1
+
+    if "number" in request.args:
+        requestedNumber = int(request.args["number"])
+
+    return jsonify(recipeService.get_random(requestedNumber))
+
 # Tags
 @app.route('/api/tag', methods=['GET'])
 def get_all_tags():
