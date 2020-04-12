@@ -2,7 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form @submit.prevent="saveChanges">
+                <div v-if="lastSaved.id" class="alert alert-primary mb-2" role="alert">
+                    Saved recipe {{lastSaved.name}}.
+                    <button type="button" class="close" @click="dismissNotification" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form @submit.prevent="saveChanges" v-on:keydown.ctrl.s.prevent="saveChanges">
                 <legend>Edit Recipe</legend>
                 <div class="form-group">
                     <label for="recipeName">Name</label>
@@ -31,12 +37,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
                 </form>
-                <div v-if="lastSaved.id" class="alert alert-primary mt-2" role="alert">
-                    Saved recipe {{lastSaved.name}}.
-                    <button type="button" class="close" @click="dismissNotification" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -109,8 +109,12 @@ export default {
             this.currentRecipe.ingredients.splice(index, 1);
         },
         saveChanges: function() {
-            if (this.currentRecipe.id === null)
-                this.service.create(this.currentRecipe).then(recipe => this.lastSaved = this.currentRecipe = recipe);
+            if (this.currentRecipe.id === null) {
+                this.service.create(this.currentRecipe).then(recipe => {
+                    this.lastSaved = recipe;
+                    this.currentRecipe = new Recipe();
+                });
+            }
             else
                 this.service.update(this.currentRecipe).then(recipe => this.lastSaved = recipe);
         },

@@ -1,6 +1,5 @@
 Tasks
 =====
-Suche nach Recipes
 Sieben zufällige Recipes
 Backend endpoint für units
 Schickere season months components für Edit und Anzeige
@@ -11,8 +10,9 @@ Rezept auf Karteikarte drucken
 
 Themen
 ======
-Error-Handling
 Deployment / Zugriff im Heimnetz
+Daten-Backup
+Error-Handling
 Sicherheit: https, Netzwerkkonfiguration, checks für Eingangsdaten
 Authentifizierung
 Lokalisierung
