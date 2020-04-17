@@ -30,7 +30,7 @@ export default {
     },
     mounted() {
         this.recipeService = new RecipeService();
-        this.recipeService.getRandomlyChosen(7)
+        this.recipeService.getRandomlyChosen(7, ["Hauptgericht"])
             .then(recipeItems => this.randomRecipeItems = recipeItems);
     },
     methods: {
@@ -48,7 +48,7 @@ export default {
         },
         otherRecipe: function(index){
             let vm = this;
-            this.recipeService.getRandomlyChosen(1)
+            this.recipeService.getRandomlyChosen(1, ["Hauptgericht"])
                 .then(recipes => vm.$set(vm.randomRecipeItems, index, recipes[0]));
         }
     }

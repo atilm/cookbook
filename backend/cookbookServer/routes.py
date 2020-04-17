@@ -106,11 +106,15 @@ def get_recipe(recipe_id):
 @app.route('/api/recipe/random', methods=['GET'])
 def get_random_recipes():
     requestedNumber = 1
+    tags = []
 
     if "number" in request.args:
         requestedNumber = int(request.args["number"])
 
-    return jsonify(recipeService.get_random(requestedNumber))
+    if "tags" in request.args:
+        tags = list(map(lambda s: s.strip(), request.args["tags"].split(',')))
+
+    return jsonify(recipeService.get_random(requestedNumber, tags))
 
 # Tags
 @app.route('/api/tag', methods=['GET'])
