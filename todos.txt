@@ -1,7 +1,6 @@
 Tasks
 =====
 Zufällige Auswahl ohne Dopplungen (& Blacklist) implementieren
-Zufällige Rezeptauswahl nur von Hauptgerichten implementieren
 Suchen nach Tags filtern
 Backend endpoint für units
 Schickere season months components für Edit und Anzeige
