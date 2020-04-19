@@ -1,10 +1,20 @@
 Tasks
 =====
-Zufällige Auswahl ohne Dopplungen (& Blacklist) implementieren
+Backup-Lösung für Kochbuch-Daten (Shell scp script ?)
+
+Deployment:
+  - Eigene config-Datei für backend auf server [ok]
+  - kein CORS in production mode [ok]
+  - Frontend andere api-url in dist
+  - Auf raspberry-pi daten auf usb-stick speichern [ok]
+	- automatisches einbinden [ok]
+ 
+Liste von Zufälligen Rezepten Speichern und editieren
+Einkaufsliste erstellen
+Zufällige Auswahl ohne Dopplungen implementieren (auch bei "other"-Funktion -> blacklist)
 Suchen nach Tags filtern
 Backend endpoint für units
 Schickere season months components für Edit und Anzeige
-Einkaufsliste erstellen
 Ingredient-Gruppen / Rezepte als Ingredients
 Units ineinander umrechnen
 Rezept auf Karteikarte drucken
@@ -16,6 +26,6 @@ Themen
 Deployment / Zugriff im Heimnetz
 Daten-Backup
 Error-Handling
-Sicherheit: https, Netzwerkkonfiguration, checks für Eingangsdaten
+Sicherheit: https, Netzwerkkonfiguration, checks für Eingangsdaten, logging
 Authentifizierung
 Lokalisierung
