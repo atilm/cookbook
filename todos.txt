@@ -1,17 +1,9 @@
 Tasks
 =====
-Backup-Lösung für Kochbuch-Daten (Shell scp script ?)
-
-Deployment:
-  - Eigene config-Datei für backend auf server [ok]
-  - kein CORS in production mode [ok]
-  - Frontend andere api-url in dist
-  - Auf raspberry-pi daten auf usb-stick speichern [ok]
-	- automatisches einbinden [ok]
- 
 Liste von Zufälligen Rezepten Speichern und editieren
 Einkaufsliste erstellen
 Zufällige Auswahl ohne Dopplungen implementieren (auch bei "other"-Funktion -> blacklist)
+"Other"-Funktion für zufällig gewählte Zutaten
 Suchen nach Tags filtern
 Backend endpoint für units
 Schickere season months components für Edit und Anzeige
@@ -23,8 +15,6 @@ Rezept auf bestimmte Energiemenge skalieren
 
 Themen
 ======
-Deployment / Zugriff im Heimnetz
-Daten-Backup
 Error-Handling
 Sicherheit: https, Netzwerkkonfiguration, checks für Eingangsdaten, logging
 Authentifizierung

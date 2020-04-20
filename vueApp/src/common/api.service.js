@@ -1,6 +1,6 @@
 export default class ApiService {
     constructor(endpoint) {
-        this.url = `http://localhost:5000/api/${endpoint}`;
+        this.url = `${SERVICE_URL}/${endpoint}`;
     }
 
     getAll() {
