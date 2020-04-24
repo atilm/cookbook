@@ -6,6 +6,7 @@ class StoreManager:
             self.config = config
             self.foodStore = IndexedStore(self.config.FOOD_REPOSITORY)
             self.recipeStore = IndexedStore(self.config.RECIPE_REPOSITORY)
+            self.recipeCollectionStore = IndexedStore(self.config.RECIPE_COLLECTION_REPOSITORY)
 
     instance = None
 
