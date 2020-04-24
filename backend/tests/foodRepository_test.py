@@ -13,6 +13,10 @@ class TestFoodRepository(unittest.TestCase):
     def setUp(self):
         if (os.path.exists(self.config.FOOD_REPOSITORY)):
             os.remove(self.config.FOOD_REPOSITORY)
+
+        if (os.path.exists(self.config.RECIPE_REPOSITORY)):
+            os.remove(self.config.RECIPE_REPOSITORY)
+
         # overwrite paths to data files and reset stores
         manager = StoreManager(self.config)
         manager.setConfig(self.config)

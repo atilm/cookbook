@@ -38,7 +38,7 @@ class FoodRepository:
 
     def Delete(self, id):
         if self.__is_used_as_ingredient(id):
-            raise Exception("The food cannot be deleted, becuase it is in use.")
+            raise Exception("The food cannot be deleted, because it is in use.")
 
         self.foodStore.remove(id)
 
