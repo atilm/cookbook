@@ -53,6 +53,23 @@ class TestRecipeCollectionRepository(unittest.TestCase):
         self.__assert_collections_equal(retrievedCollection, updatedCollection)
         self.assertListEqual(updatedCollection.recipeIds, [7, 34])
 
+    def test_delete(self):
+        collectionOne = self.__build_collection__(date(2020, 4, 7), [7, 34, 1])
+        collectionTwo = self.__build_collection__(date(2020, 7, 9), [])
+
+        repository = RecipeCollectionRepository(self.config)
+        returnedCollectionOne = repository.save(collectionOne)
+        returnedCollectionTwo = repository.save(collectionTwo)
+
+        deleteRepository = RecipeCollectionRepository(self.config)
+        deleteRepository.delete(returnedCollectionTwo.id)
+
+        loadRepository = RecipeCollectionRepository(self.config)
+        allCollections = loadRepository.get_all()
+
+        self.assertEqual(len(allCollections), 1)
+        self.assertEqual(allCollections[0].id, returnedCollectionOne.id)
+
     def __build_collection__(self, date, recipeIds):
         c = RecipeCollection()
         c.date = date

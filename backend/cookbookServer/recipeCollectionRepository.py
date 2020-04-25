@@ -22,7 +22,7 @@ class RecipeCollectionRepository:
         return RecipeCollection.from_dict(self.store.update(recipeCollection.to_dict()))
 
     def delete(self, recipeCollectionId):
-        pass
+        self.store.remove(recipeCollectionId)
 
     def __to_collections__(self, jsonArray):
         return [RecipeCollection.from_dict(json) for json in jsonArray]
