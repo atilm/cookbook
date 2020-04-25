@@ -53,7 +53,7 @@ class TestRecipeRepository(unittest.TestCase):
         recipeTwo.name = "Recipe Two"
 
         returnedRecipeOne = saveRepo.save(recipeOne)
-        returnedRecipeTwo = saveRepo.save(recipeTwo)
+        saveRepo.save(recipeTwo)
 
         loadRepo = RecipeRepository(self.config)
 
@@ -79,7 +79,7 @@ class TestRecipeRepository(unittest.TestCase):
         recipeTwo = self._create_default_recipe()
         recipeTwo.name = "Recipe Two"
 
-        returnedRecipeOne = saveRepo.save(recipeOne)
+        saveRepo.save(recipeOne)
         returnedRecipeTwo = saveRepo.save(recipeTwo)
 
         with self.assertRaises(Exception):

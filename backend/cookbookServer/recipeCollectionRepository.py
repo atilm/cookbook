@@ -13,13 +13,16 @@ class RecipeCollectionRepository:
         return RecipeCollection.from_dict(collectionWithId)
 
     def get_all(self):
-        return self.__to_collections(self.store.get_all())
+        return self.__to_collections__(self.store.get_all())
 
-    def update(self):
-        pass
+    def get_by_id(self, id):
+        return RecipeCollection.from_dict(self.store.get(id))
+
+    def update(self, recipeCollection):
+        return RecipeCollection.from_dict(self.store.update(recipeCollection.to_dict()))
 
     def delete(self, recipeCollectionId):
         pass
 
-    def __to_collections(self, jsonArray):
+    def __to_collections__(self, jsonArray):
         return [RecipeCollection.from_dict(json) for json in jsonArray]

@@ -35,6 +35,24 @@ class TestRecipeCollectionRepository(unittest.TestCase):
         self.__assert_collections_equal(allCollections[0], returnedCollectionOne)
         self.__assert_collections_equal(allCollections[1], returnedCollectionTwo)
 
+    def test_update(self):
+        collectionOne = self.__build_collection__(date(2020, 4, 7), [7, 34, 1])
+        collectionTwo = self.__build_collection__(date(2020, 7, 9), [])
+
+        repository = RecipeCollectionRepository(self.config)
+        returnedCollectionOne = repository.save(collectionOne)
+        repository.save(collectionTwo)
+
+        updateRepository = RecipeCollectionRepository(self.config)
+        returnedCollectionOne.recipeIds = [7, 34]
+        updatedCollection = updateRepository.update(returnedCollectionOne)
+
+        loadRepository = RecipeCollectionRepository(self.config)
+        retrievedCollection = loadRepository.get_by_id(returnedCollectionOne.id)
+
+        self.__assert_collections_equal(retrievedCollection, updatedCollection)
+        self.assertListEqual(updatedCollection.recipeIds, [7, 34])
+
     def __build_collection__(self, date, recipeIds):
         c = RecipeCollection()
         c.date = date
