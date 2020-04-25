@@ -120,3 +120,5 @@ def get_random_recipes():
 @app.route('/api/tag', methods=['GET'])
 def get_all_tags():
     return jsonify(tagService.get_all())
+
+from cookbookServer import recipeCollectionRoutes
