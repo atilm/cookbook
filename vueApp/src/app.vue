@@ -26,6 +26,9 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/randomRecipes">Random recipes</router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/recipeCollections">Recipe collections</router-link>
+            </li>
           </ul>
         </div>
       </div>

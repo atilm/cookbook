@@ -1,7 +1,7 @@
 <template>
     <table class="table">
         <tbody>
-            <tr :v-for="collection in recipeCollections" :key="collection.id">
+            <tr v-for="collection in recipeCollections" :key="collection.id">
                 <td>{{collection.date}}</td>
                 <td>{{listNames(collection)}}</td>
             </tr>

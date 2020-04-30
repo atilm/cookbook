@@ -10,6 +10,7 @@ import RecipeListView from './views/ListRecipesView.vue';
 import RecipeDetailsView from './views/RecipeDetailsView.vue';
 import EditRecipeView from './views/EditRecipeView.vue';
 import RandomRecipesView from './views/RandomRecipesView.vue';
+import RecipeCollectionsView from './views/ListRecipeCollectionsView.vue';
 import 'vue-select/dist/vue-select.css';
 
 Vue.use(VueRouter);
@@ -27,7 +28,8 @@ const routes = [
   { path: '/recipe/:id/details', name: 'recipeDetails', component: RecipeDetailsView },
   { path: '/recipe/:id/edit', name: 'editRecipe', component: EditRecipeView },
   { path: '/recipe/create', component: EditRecipeView },
-  { path: '/randomRecipes', component: RandomRecipesView }
+  { path: '/randomRecipes', component: RandomRecipesView },
+  { path: '/recipeCollections', component: RecipeCollectionsView }
 ]
 
 const router = new VueRouter({
