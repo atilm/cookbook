@@ -10,14 +10,15 @@ class RecipeCollection:
         return {
             'id' : self.id,
             'date' : self.date.isoformat(),
-            'recipes' : self.recipeIds
+            'recipeIds' : self.recipeIds
         }
 
     @classmethod
     def from_dict(cls, dict):
         recipeCollection = cls()
         recipeCollection.id = dict['id']
-        recipeCollection.date = datetime.strptime(dict['date'], "%Y-%m-%d").date()
-        recipeCollection.recipeIds = dict['recipes']
+        if dict['date'] != None:
+            recipeCollection.date = datetime.strptime(dict['date'], "%Y-%m-%d").date()
+        recipeCollection.recipeIds = dict['recipeIds']
 
         return recipeCollection

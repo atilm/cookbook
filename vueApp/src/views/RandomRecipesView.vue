@@ -13,23 +13,28 @@
                 </tbody>
             </table>
         </div>
+        <div class="col"><button class="btn btn-sm" @click="saveList()">Save</button></div>
+        <div v-if="lastSavedCollection"><p>Saved: {{lastSavedCollection.id}}</p></div>
       </div>
     </div>
 </template>
 
 <script>
-import FoodService from "../common/recipeService"
 import RecipeService from '../common/recipeService';
+import RecipeCollection from '../common/recipeCollection';
+import RecipeCollectionService from "../common/recipeCollectionService";
 
 export default {
     name: 'random-recipes-view',
     data() {
         return {
-            randomRecipeItems: []
+            randomRecipeItems: [],
+            lastSavedCollection: null
         }
     },
     mounted() {
         this.recipeService = new RecipeService();
+        this.recipeCollectionService = new RecipeCollectionService();
         this.recipeService.getRandomlyChosen(7, ["Hauptgericht"])
             .then(recipeItems => this.randomRecipeItems = recipeItems);
     },
@@ -50,6 +55,14 @@ export default {
             let vm = this;
             this.recipeService.getRandomlyChosen(1, ["Hauptgericht"])
                 .then(recipes => vm.$set(vm.randomRecipeItems, index, recipes[0]));
+        },
+        saveList: function() {
+            let collection = new RecipeCollection();
+            collection.recipeIds = this.randomRecipeItems.map(item => item.id);
+
+            let vm = this;
+            this.recipeCollectionService.create(collection)
+            .then(c => vm.lastSavedCollection = c);
         }
     }
 }

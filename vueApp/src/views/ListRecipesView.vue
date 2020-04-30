@@ -43,12 +43,12 @@ export default {
     methods: {
         updateList: function() {
             let vm = this;
-            this.service.get_all().then(items => this.recipeItems = items );
+            this.service.get_all().then(items => vm.recipeItems = items );
         },
         searchRecipes: function() {
             let vm = this;
-            this.service.get_by_search_term(this.searchTerm)
-                .then(items => this.recipeItems = items);
+            this.service.get_by_search_term(vm.searchTerm)
+                .then(items => vm.recipeItems = items);
         },
         getTagsString: function(recipe) {
             let resultString = "";
