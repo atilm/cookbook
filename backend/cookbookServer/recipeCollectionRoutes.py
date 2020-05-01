@@ -30,14 +30,14 @@ def update_recipeCollection(collection_id):
 def get_all_recipeCollections():
     return jsonify(recipeCollectionService.get_all())
 
-@app.route('/api/recipeCollection/<int:recipe_id>', methods=['GET'])
-def get_recipeCollections(collection_id):
+@app.route('/api/recipeCollection/<int:collection_id>', methods=['GET'])
+def get_recipeCollection(collection_id):
     collection = recipeCollectionService.get_by_id(collection_id)
     if collection['id'] is None:
         abort(404)
     return jsonify(collection)
 
-@app.route('/api/recipeCollection/<int:recipe_id>', methods=['DELETE'])
+@app.route('/api/recipeCollection/<int:collection_id>', methods=['DELETE'])
 def delete_recipeCollection(collection_id):
     recipeCollectionService.delete(collection_id)
     return jsonify({'result': True})

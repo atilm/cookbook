@@ -1,6 +1,6 @@
 Tasks
 =====
-Liste von Zufälligen Rezepten Speichern und editieren
+Liste von Zufälligen Rezepten editieren
 Einkaufsliste erstellen
 Zufällige Auswahl ohne Dopplungen implementieren (auch bei "other"-Funktion -> blacklist)
 "Other"-Funktion für zufällig gewählte Zutaten

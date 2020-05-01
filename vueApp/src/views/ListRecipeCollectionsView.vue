@@ -5,7 +5,7 @@
             <table class="table">
                 <tbody>
                     <tr v-for="collection in recipeCollections" :key="collection.id">
-                        <td>{{collection.date}}</td>
+                        <td><router-link :to="{ name: 'recipeCollectionDetails', params: { id: collection.id }}">{{collection.date}}</router-link></td>
                         <td>{{previewString(collection)}}</td>
                     </tr>
                 </tbody>
