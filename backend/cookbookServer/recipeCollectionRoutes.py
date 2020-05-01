@@ -17,12 +17,12 @@ def create_recipeCollection():
 
     return jsonify(collection), 201
 
-@app.route('/api/recipeCollection/<int:recipe_id>', methods=['PUT'])
+@app.route('/api/recipeCollection/<int:collection_id>', methods=['PUT'])
 def update_recipeCollection(collection_id):
     if not request.json:
         abort(400)
 
-    collection = recipeCollectionService.update(collection_id, request.json)
+    collection = recipeCollectionService.update(request.json)
 
     return jsonify(collection), 201
 

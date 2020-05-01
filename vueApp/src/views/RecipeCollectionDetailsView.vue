@@ -6,7 +6,7 @@
             <table class="table">
                 <tr v-for="(recipeLink, index) in recipeCollection.recipes" :key="index">
                     <td><router-link :to="{ name: 'recipeDetails', params: { id: recipeLink.id }}">{{recipeLink.name}}</router-link></td>
-                    <td><button class="btn btn-secondary btn-sm">Remove</button></td>
+                    <td><button class="btn btn-secondary btn-sm" @click="removeLink(index)">Remove</button></td>
                 </tr>
             </table>
         </div>
@@ -33,6 +33,11 @@ export default {
         loadCollection: function(id) {
             let vm = this;
             this.service.get(id).then(c => vm.recipeCollection = c);
+        },
+        removeLink: function(index) {
+            this.recipeCollection.recipes.splice(index, 1);
+            let vm = this;
+            this.service.update(this.recipeCollection).then(c => this.recipeCollection = c);
         }
     }
 }

@@ -36,6 +36,9 @@ export default {
             .then(collections => vm.recipeCollections = collections);
         },
         previewString: function(recipeCollection){
+            if (recipeCollection.recipes.length === 0)
+                return "no recipes in list";
+                
             return `${ recipeCollection.recipes[0].name }, ...`;
         }
     }

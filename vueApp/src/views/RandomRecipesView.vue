@@ -21,6 +21,7 @@
 
 <script>
 import RecipeService from '../common/recipeService';
+import RecipeLink from '../common/recipeLink';
 import RecipeCollection from '../common/recipeCollection';
 import RecipeCollectionService from "../common/recipeCollectionService";
 
@@ -58,7 +59,7 @@ export default {
         },
         saveList: function() {
             let collection = new RecipeCollection();
-            collection.recipeIds = this.randomRecipeItems.map(item => item.id);
+            collection.recipes = this.randomRecipeItems.map(item => new RecipeLink(item.id));
 
             let vm = this;
             this.recipeCollectionService.create(collection)
