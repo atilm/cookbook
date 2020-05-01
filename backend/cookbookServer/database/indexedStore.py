@@ -33,6 +33,9 @@ class IndexedStore:
     def get_all(self):
         return list(self.objectDictionary.values())
 
+    def get_by_ids(self, index_array):
+        return [self.objectDictionary[index] for index in index_array]
+
     def get(self, index):
         return self.objectDictionary[index]
 

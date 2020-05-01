@@ -1,12 +1,18 @@
 <template>
-    <table class="table">
-        <tbody>
-            <tr v-for="collection in recipeCollections" :key="collection.id">
-                <td>{{collection.date}}</td>
-                <td>{{listNames(collection)}}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr v-for="collection in recipeCollections" :key="collection.id">
+                        <td>{{collection.date}}</td>
+                        <td>{{previewString(collection)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
@@ -29,8 +35,8 @@ export default {
             this.service.get_all()
             .then(collections => vm.recipeCollections = collections);
         },
-        listNames: function(recipeCollection){
-            return recipeCollection.recipeIds.join(", ")
+        previewString: function(recipeCollection){
+            return `${ recipeCollection.recipes[0].name }, ...`;
         }
     }
 }

@@ -19,6 +19,9 @@ class RecipeRepository:
     def get(self, id):
         return Recipe.from_dict(self.recipeStore.get(id))
 
+    def get_by_ids(self, id_array):
+        return self.__to_Recipes(self.recipeStore.get_by_ids(id_array))
+
     def get_by_search_term(self, search_term):
         return list(filter(lambda r: self.__has_search_term(r, search_term), self.get_all()))
 

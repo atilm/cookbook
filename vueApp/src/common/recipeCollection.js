@@ -3,5 +3,6 @@ export default class RecipeCollection{
         this.id = null;
         this.date = null;
         this.recipeIds = [];
+        this.recipes = [];
     }
 }
