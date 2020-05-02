@@ -16,6 +16,11 @@ class RecipeService:
     def get_by_id(self, id):
         return self.repository.get(id).to_dict()
 
+    def get_scaled_by_id(self, id, number_of_people):
+        recipe = self.repository.get(id)
+        scaled_recipe = recipe.get_scaled(number_of_people)
+        return scaled_recipe.to_dict()
+
     def get_by_search_term(self, search_term):
         return self._to_json_list(self.repository.get_by_search_term(search_term))
 
