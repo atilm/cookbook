@@ -1,3 +1,5 @@
+import copy
+
 class Recipe:
     def __init__(self):
         self.id = None
@@ -41,3 +43,17 @@ class Recipe:
             'tags' : self.tags,
             'ingredients' : self.ingredients,
             'instructions' : self.instructions }
+
+    def get_scaled(self, number_of_people):
+        scaled_recipe = copy.deepcopy(self)
+
+        if number_of_people == self.numberOfPeople:
+            return scaled_recipe
+
+        if self.numberOfPeople == None or self.numberOfPeople <= 0:
+            raise Exception("Tried to scale recipe with undefined number of people.")
+
+        for ingredient in scaled_recipe.ingredients:
+            ingredient["amount"] = float(ingredient["amount"]) / self.numberOfPeople * number_of_people
+        
+        return scaled_recipe
