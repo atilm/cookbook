@@ -41,7 +41,7 @@ def get_all_recipes():
 @app.route('/api/recipe/<int:recipe_id>', methods=['GET'])
 def get_recipe(recipe_id):
     if "numberOfPeople" in request.args:
-        recipe = recipeService.get_scaled_by_id(recipe_id, request.args["numberOfPeople"])
+        recipe = recipeService.get_scaled_by_id(recipe_id, float(request.args["numberOfPeople"]))
     else:
         recipe = recipeService.get_by_id(recipe_id)
 

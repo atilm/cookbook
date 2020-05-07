@@ -3,8 +3,12 @@
         <div class="row">
             <div class="col">
                 <h1>{{currentRecipe.name}}</h1>
-                <router-link :to="{ name: 'editRecipe', params: { id: currentRecipe.id }}" tag="button" class="btn btn-primary btn-sm">Edit</router-link>
-                <p>Für {{currentRecipe.numberOfPeople}} Personen</p>
+                <router-link :to="{ name: 'editRecipe', params: { id: currentRecipe.id }}" tag="button" class="btn btn-primary btn-sm mb-2">Edit</router-link>
+                <form @submit.prevent="rescaleRecipe" class="form-inline mb-2">
+                    <label for="numberOfPersons">Personen: </label>
+                    <input type="number" class="form-control ml-2" id="numberOfPersons" v-model="currentNumberOfPersons">
+                    <button type="submit" class="btn btn-sm btn-primary ml-2">Rescale</button>
+                </form>
                 <table class="table table-striped">
                     <tbody>
                         <tr  v-for="(ingredient, index) in currentRecipe.ingredients" :key="index">
@@ -29,6 +33,7 @@ export default {
     data() {
         return {
             currentRecipe: new Recipe(),
+            currentNumberOfPersons: null,
             currentInstructions: ""
         }
     },
@@ -46,7 +51,13 @@ export default {
             let markdownConverter = new showdown.Converter();
 
             vm.currentRecipe = recipe;
+            vm.currentNumberOfPersons = recipe.numberOfPeople;
             vm.currentInstructions = markdownConverter.makeHtml(recipe.instructions);
+        },
+        rescaleRecipe: function(){
+            let vm = this;
+            this.service.get_scaled(vm.currentRecipe.id, vm.currentNumberOfPersons)
+                .then(recipe => vm.parseRecipe(recipe));
         }
     }
 }

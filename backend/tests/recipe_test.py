@@ -39,6 +39,7 @@ class TestRecipe(unittest.TestCase):
 
         expectedRecipe = copy.deepcopy(recipe)
         expectedRecipe.ingredients = []
+        expectedRecipe.numberOfPeople = 3
         expectedRecipe.add_ingredient(1, "Milk", 500. / 4. * 3, "ml")
         expectedRecipe.add_ingredient(2, "Flour", 100. / 4. * 3, "g")
         expectedRecipe.add_ingredient(3, "Egg", 1. / 4. * 3, "Piece")

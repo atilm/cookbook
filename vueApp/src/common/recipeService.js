@@ -17,6 +17,15 @@ export default class RecipeService {
         return this.apiService.get(id);
     }
 
+    get_scaled(id, numberOfPeople) {
+        let requestUrl = `${this.apiService.url}/${id}?numberOfPeople=${numberOfPeople}`;
+        return fetch(requestUrl)
+            .then(result => result.json())
+            .catch(function(e){
+                console.log(`Fetch failed: ${ e }`);
+            });
+    }
+
     getRandomlyChosen(number, tags) {
         let tagsString = tags.join(",")
         let requestUrl = `${this.apiService.url}/random?number=${number}&tags=${tagsString}`;
