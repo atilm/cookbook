@@ -45,6 +45,6 @@ export default class RecipeService {
     }
 
     delete(id) {
-        this.apiService.delete(id);
+        return this.apiService.delete(id);
     }
 };

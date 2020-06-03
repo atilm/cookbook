@@ -22,6 +22,6 @@ export default class RecipeCollectionService {
     }
 
     delete(id) {
-        this.apiService.delete(id);
+        return this.apiService.delete(id);
     }
 }

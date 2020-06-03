@@ -63,8 +63,7 @@ export default {
             return resultString;
         },
         deleteRecipe: function(id) {
-            this.service.delete(id);
-            this.updateList();
+            this.service.delete(id).then(this.updateList);
         }
     }
 }

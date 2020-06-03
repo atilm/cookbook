@@ -7,6 +7,7 @@
                     <tr v-for="collection in recipeCollections" :key="collection.id">
                         <td><router-link :to="{ name: 'recipeCollectionDetails', params: { id: collection.id }}">{{collection.date}}</router-link></td>
                         <td>{{previewString(collection)}}</td>
+                        <td><button class="btn btn-sm btn-secondary" @click="deleteCollection(collection.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -40,6 +41,11 @@ export default {
                 return "no recipes in list";
                 
             return `${ recipeCollection.recipes[0].name }, ...`;
+        },
+        deleteCollection: function(id) {
+            let vm = this;
+            this.service.delete(id)
+                .then(vm.updateList);
         }
     }
 }
